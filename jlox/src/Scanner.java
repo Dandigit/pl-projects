@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/* lol /* */
+
 import static com.dandigit.jlox.TokenType.*;
 
 class Scanner {
@@ -81,7 +83,7 @@ class Scanner {
                     while (peek() != '\n' && !isAtEnd()) advance();
                 // Multiline comment
                 } else if (match('*')) {
-
+                    blockComment();
                 // Plain ol' slash
                 } else {
                     addToken(SLASH);
@@ -108,6 +110,32 @@ class Scanner {
                     Lox.error(line, "Unexpected character.");
                 }
                 break;
+        }
+    }
+
+    private void blockComment() {
+        while (peek() != '*' && !isAtEnd()) {
+            if (peek() == '\n') ++line;
+            if (peek() == '/') {
+                if (peekNext() == '*') {
+                    advance();
+                    advance();
+                    blockComment();
+                }
+            }
+            advance();
+        }
+
+        // String without close quote
+        if (isAtEnd()) {
+            Lox.error(line, "Unterminated block comment");
+        }
+
+        advance();
+
+        if (!match('/')) {
+            advance();
+            blockComment();
         }
     }
 
