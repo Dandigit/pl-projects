@@ -61,7 +61,7 @@ public class Lox {
 
         //System.out.println("-AST view-");
         //System.out.println(new AstPrinter().print(expression));
-        System.out.println();
+        //System.out.println();
         interpreter.interpret(statements);
     }
 

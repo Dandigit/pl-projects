@@ -17,17 +17,41 @@ class Parser {
 
     List<Stmt> parse() {
         List<Stmt> statements = new ArrayList<>();
-        try {
-            while (!isAtEnd()) {
-                statements.add(statement());
-            }
 
-            return statements;
+        while (!isAtEnd()) {
+            statements.add(declaration());
+        }
+
+        return statements;
+    }
+
+    /* DECLARATIONS: need to be global or in a block. */
+    private Stmt declaration() {
+        try {
+            // Look for declaration keywords
+            if (match(VAR)) return varDeclaration();
+
+            // Otherwise, look for a statement
+            return statement();
         } catch (ParseError error) {
+            synchronise();
             return null;
         }
     }
 
+    private Stmt varDeclaration() {
+        Token name = consume(IDENTIFIER, "Expected a variable name.");
+
+        Expr initializer = null;
+        if (match(EQUAL)) {
+            initializer = expression();
+        }
+
+        consume(SEMICOLON, "Expected ';' after variable declaration.");
+        return new Stmt.Var(name, initializer);
+    }
+
+    /* STATEMENTS: don't need to be global or in a block. */
     private Stmt statement() {
         if (match(PRINT)) return printStatement();
 
@@ -64,16 +88,39 @@ class Parser {
     private Expr comma() {
         // Grab either the left operand of an comma expression
         // or an expression with higher precedence than an comma expression
-        Expr expr = ternary();
+        Expr expr = assignment();
 
         // Is a comma token matched?
         while (match(COMMA)) {
             // Grab the token matched for the operator
             Token operator = previous();
             // Get the right operand
-            Expr right = ternary();
+            Expr right = assignment();
             // Combine the operator and operands into a new AST node
             expr = new Expr.Binary(expr, operator, right);
+        }
+
+        return expr;
+    }
+
+    private Expr assignment() {
+        // Get the first expression
+        Expr expr = ternary();
+
+        // Is there an assignment operator?
+        if (match(EQUAL)) {
+            // We're parsing an assignment expression
+            Token equals = previous();
+            Expr value = assignment(); // Right recursion
+
+            // Is the first expression a variable?
+            if (expr instanceof Expr.Variable) {
+                Token name = ((Expr.Variable)expr).name;
+                return new Expr.Assign(name, value);
+            }
+
+            // Otherwise, we must be assigning to an invalid target.
+            error(equals, "Invalid assignment target.");
         }
 
         return expr;
@@ -239,6 +286,10 @@ class Parser {
         // Varying values (number and string literals)
         if (match(NUMBER, STRING)) {
             return new Expr.Literal(previous().literal);
+        }
+
+        if (match(IDENTIFIER)) {
+            return new Expr.Variable(previous());
         }
 
         // Groupings

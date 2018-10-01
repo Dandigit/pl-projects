@@ -1,4 +1,4 @@
-package com.dandigit.jlox;
+/*package com.dandigit.jlox;
 
 class AstPrinter implements Expr.Visitor<String> {
     String print(Expr expr) {
@@ -47,4 +47,4 @@ class AstPrinter implements Expr.Visitor<String> {
         builder.append(")");
         return builder.toString();
     }
-}
+}*/
