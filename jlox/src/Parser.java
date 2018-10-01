@@ -1,5 +1,6 @@
 package com.dandigit.jlox;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.dandigit.jlox.TokenType.*;
@@ -14,16 +15,41 @@ class Parser {
         this.tokens = tokens;
     }
 
-    Expr parse() {
+    List<Stmt> parse() {
+        List<Stmt> statements = new ArrayList<>();
         try {
-            return expression();
+            while (!isAtEnd()) {
+                statements.add(statement());
+            }
+
+            return statements;
         } catch (ParseError error) {
             return null;
         }
     }
 
-    /* expression() is simply an alias for *
-     * comma, the lowest precedence level. */
+    private Stmt statement() {
+        if (match(PRINT)) return printStatement();
+
+        return expressionStatement();
+    }
+
+    // RULE: printStmt → "print" expression ";";
+    private Stmt printStatement() {
+        Expr value = expression();
+        consume(SEMICOLON, "Expected ';' after value.");
+        return new Stmt.Print(value);
+    }
+
+    // RULE: exprStmt → expression ";";
+    private Stmt expressionStatement() {
+        Expr expr = expression();
+        consume(SEMICOLON, "Expected ';' after expression.");
+        return new Stmt.Expression(expr);
+    }
+
+    /* expression() is simply an alias  *
+     * for the lowest precedence level. */
 
     // RULE: expression → comma;
     private Expr expression() {
