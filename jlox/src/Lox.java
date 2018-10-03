@@ -42,7 +42,7 @@ public class Lox {
         BufferedReader reader = new BufferedReader(input);
 
         // Infinitely read lines from the console and run() them
-        for (;;) {
+        while (true) {
             System.out.print("lox > ");
             run(reader.readLine());
 

@@ -54,6 +54,7 @@ class Parser {
     /* STATEMENTS: don't need to be global or in a block. */
     private Stmt statement() {
         if (match(PRINT)) return printStatement();
+        if (match(LEFT_BRACE)) return new Stmt.Block(block());
 
         return expressionStatement();
     }
@@ -70,6 +71,18 @@ class Parser {
         Expr expr = expression();
         consume(SEMICOLON, "Expected ';' after expression.");
         return new Stmt.Expression(expr);
+    }
+
+    // RULE: "{" declaration* "}";
+    private List<Stmt> block() {
+        List<Stmt> statements = new ArrayList<>();
+
+        while (!check(RIGHT_BRACE) && !isAtEnd()) {
+            statements.add(declaration());
+        }
+
+        consume(RIGHT_BRACE, "Expected '}' after block.");
+        return statements;
     }
 
     /* expression() is simply an alias  *
