@@ -21,6 +21,20 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
             @Override
             public String toString() { return "<native fn>"; }
         });
+
+        globals.define("toString", new LoxCallable() {
+            @Override
+            public int arity() { return 1; }
+
+            @Override
+            public Object call(Interpreter interpreter,
+                               List<Object> arguments) {
+                return stringify(arguments.get(0));
+            }
+
+            @Override
+            public String toString() { return "<native fn>"; }
+        });
     }
 
     void interpret(List<Stmt> statements) {
@@ -191,7 +205,7 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
 
     @Override
     public Void visitFunctionStmt(Stmt.Function stmt) {
-        LoxFunction function = new LoxFunction(stmt);
+        LoxFunction function = new LoxFunction(stmt, environment);
         environment.define(stmt.name.lexeme, function);
         return null;
     }
