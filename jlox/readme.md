@@ -6,5 +6,5 @@ Along with the code in Crafting Interpreters, I've implemented:
 - Multi-line comments
 - Comma operator
 - Ternary (conditional) operator
-- `print` as a foriegn function
-- Other foriegn functions like `put()` and `getln()`
+- `print` as a foreign function
+- Other foreign functions like `put()` and `getln()`
