@@ -9,6 +9,7 @@ abstract class Expr {
         R visitBinaryExpr(Binary expr);
         R visitGroupingExpr(Grouping expr);
         R visitLiteralExpr(Literal expr);
+        R visitLogicalExpr(Logical expr);
         R visitUnaryExpr(Unary expr);
         R visitVariableExpr(Variable expr);
     }
@@ -75,6 +76,20 @@ abstract class Expr {
             return visitor.visitLiteralExpr(this);
         }
         final Object value;
+    }
+    static class Logical extends Expr {
+        Logical(Expr left, Token operator, Expr right) {
+            this.left = left;
+            this.operator = operator;
+            this.right = right;
+        }
+
+        <R> R accept(Visitor<R> visitor) {
+            return visitor.visitLogicalExpr(this);
+        }
+        final Expr left;
+        final Token operator;
+        final Expr right;
     }
     static class Unary extends Expr {
         Unary(Token operator, Expr right) {
