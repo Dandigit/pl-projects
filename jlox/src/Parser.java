@@ -30,6 +30,7 @@ class Parser {
     private Stmt declaration() {
         try {
             // Look for declaration keywords
+            if (match(FUN)) return function("function");
             if (match(VAR)) return varDeclaration();
 
             // Otherwise, look for a statement
@@ -50,6 +51,27 @@ class Parser {
 
         consume(SEMICOLON, "Expected ';' after variable declaration.");
         return new Stmt.Var(name, initializer);
+    }
+
+    private Stmt function(String kind) {
+        Token name = consume(IDENTIFIER, "Expected " + kind + " name.");
+        consume(LEFT_PAREN, "Expected '(' after " + kind + " name.");
+
+        List<Token> paramaters = new ArrayList<>();
+        if (!check(RIGHT_PAREN)) {
+            do {
+                if (paramaters.size() >= 8) {
+                    error(peek(), "Cannot have more that 8 paramaters.");
+                }
+
+                paramaters.add(consume(IDENTIFIER, "Expected paramater name."));
+            } while (match(COMMA));
+        }
+        consume(RIGHT_PAREN, "Expected ')' after parameters.");
+
+        consume(LEFT_BRACE, "Expected '{' before " + kind + " body.");
+        List<Stmt> body = block();
+        return new Stmt.Function(name, paramaters, body);
     }
 
     /* STATEMENTS: don't need to be global or in a block. */
@@ -378,7 +400,41 @@ class Parser {
         }
 
         // Otherwise, we must have reached the highest level of precedence.
-        return primary();
+        return call();
+    }
+
+    private Expr finishCall(Expr callee) {
+        List<Expr> arguments = new ArrayList<>();
+        if (!check(RIGHT_PAREN)) {
+            do {
+                if (arguments.size() >= 8) {
+                    error(peek(), "Cannot have more than 8 arguments.");
+                }
+
+                // Calls assignment() rather than expression()
+                // to avoid the comma operator, essentially
+                // "overloading" it.
+                arguments.add(assignment());
+            } while (match(COMMA));
+        }
+
+        Token paren = consume(RIGHT_PAREN, "Expected ')' after arguments.");
+
+        return new Expr.Call(callee, paren, arguments);
+    }
+
+    private Expr call() {
+        Expr expr = primary();
+
+        while (true) {
+            if (match(LEFT_PAREN)) {
+                expr = finishCall(expr);
+            } else {
+                break;
+            }
+        }
+
+        return expr;
     }
 
     /* Most of the cases for primary() are terminal  *
