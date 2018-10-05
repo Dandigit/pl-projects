@@ -6,20 +6,20 @@ var c = "global c";
   var b = "outer b";
   {
     var a = "inner a";
-    print a;
-    print b;
-    print c;
+    print(a);
+    print(b);
+    print(c);
   }
-  print a;
-  print b;
-  print c;
+  print (a);
+  print (b);
+  print (c);
 }
-print a;
-print b;
-print c;
+print (a);
+print (b);
+print (c);
 
 var a = 1;
 {
   var a = a + 2;
-  print a;
+  print(a);
 }

@@ -6,7 +6,7 @@ fun fibonacci(n) {
 }
 
 for (var i = 0; i < 30; i = i + 1) {
-  print fibonacci(i);
+  print(fibonacci(i));
 }
 
 print "Executed in " + toString(clock() - startTime) + " second(s).";
