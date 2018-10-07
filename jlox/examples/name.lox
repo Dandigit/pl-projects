@@ -1,3 +1,3 @@
 put("What is your name? ");
 var name = getln();
-print("Hello, " + toString(name) + "!");
+print("Hello, " + name as str + "!");
