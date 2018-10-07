@@ -1,5 +1,5 @@
 # jlox
-`jlox` is an implementation of Lox, written in Java.
+`jlox` is an **enhanced** implementation of Lox, written in Java.
 
 ## Notable additions
 Along with the code in Crafting Interpreters, I've implemented:
@@ -8,3 +8,4 @@ Along with the code in Crafting Interpreters, I've implemented:
 - Ternary (conditional) operator
 - `print` as a foreign function
 - Other foreign functions like `put()` and `getln()`
+- Support for overloadable type casting
