@@ -374,14 +374,36 @@ class Parser {
      * of precedence. Remember '*' and '/' share   *
      * the multiplication precedence level.        */
 
-    // RULE: multiplication → unary ( ( "/" | "*" ) unary )*;
     private Expr multiplication() {
-        Expr expr = unary();
+        Expr expr = cast();
 
         while (match(SLASH, STAR)) {
             Token operator = previous();
-            Expr right = unary();
+            Expr right = cast();
             expr = new Expr.Binary(expr, operator, right);
+        }
+
+        return expr;
+    }
+
+    private Expr cast() {
+        Expr expr = unary();
+
+        while (match(AS)) {
+            Token operator = previous();
+            Token right = advance();
+            expr = new Expr.Call(
+                    new Expr.Variable(
+                          new Token(
+                                  IDENTIFIER,
+                                  "cast" + right.lexeme,
+                                  null,
+                                  operator.line
+                          )
+                    ),
+                    operator,
+                    Arrays.asList(expr)
+            );
         }
 
         return expr;

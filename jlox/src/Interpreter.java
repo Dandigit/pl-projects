@@ -78,7 +78,7 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
             public String toString() { return "<native fn>"; }
         });
 
-        globals.define("toString", new LoxCallable() {
+        globals.define("caststr", new LoxCallable() {
             @Override
             public int arity() { return 1; }
 

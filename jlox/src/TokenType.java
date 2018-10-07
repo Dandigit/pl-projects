@@ -17,7 +17,10 @@ enum TokenType {
 
     // Keywords, nil and true/false
     AND, CLASS, ELSE, FALSE, FUN, FOR, IF, NIL,
-    OR, RETURN, SUPER, THIS, TRUE, VAR, WHILE,
+    OR, RETURN, SUPER, THIS, TRUE, VAR, WHILE, AS,
+
+    // Types
+    NUM, BOOL, STR,
 
     // Lonely
     EOF

@@ -35,6 +35,10 @@ class Scanner {
         keywords.put("true",    TRUE);
         keywords.put("var",     VAR);
         keywords.put("while",   WHILE);
+        keywords.put("as",      AS);
+        keywords.put("num",     NUM);
+        keywords.put("bool",    BOOL);
+        keywords.put("str",     STR);
     }
 
     Scanner(String source) {
