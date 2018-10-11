@@ -9,4 +9,4 @@ for (var i = 0; i < 30; i = i + 1) {
   print(fibonacci(i));
 }
 
-print "Executed in " + toString(clock() - startTime) + " second(s).";
+print("Executed in " + str(clock() - startTime) + " second(s).");

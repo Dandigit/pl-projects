@@ -30,6 +30,7 @@ class Parser {
     private Stmt declaration() {
         try {
             // Look for declaration keywords
+            if (match(CLASS)) return classDeclaration();
             if (match(FUN)) return function("function");
             if (match(VAR)) return varDeclaration();
 
@@ -39,6 +40,20 @@ class Parser {
             synchronise();
             return null;
         }
+    }
+
+    private Stmt classDeclaration() {
+        Token name = consume(IDENTIFIER, "Expected class name.");
+        consume(LEFT_BRACE, "Expected '{' before class body.");
+
+        List<Stmt.Function> methods = new ArrayList<>();
+        while (!check(RIGHT_BRACE) && !isAtEnd()) {
+            methods.add(function("method"));
+        }
+
+        consume(RIGHT_BRACE, "Expected '}' after class body.");
+
+        return new Stmt.Class(name, methods);
     }
 
     private Stmt varDeclaration() {
@@ -53,7 +68,7 @@ class Parser {
         return new Stmt.Var(name, initializer);
     }
 
-    private Stmt function(String kind) {
+    private Stmt.Function function(String kind) {
         Token name = consume(IDENTIFIER, "Expected " + kind + " name.");
         consume(LEFT_PAREN, "Expected '(' after " + kind + " name.");
 
@@ -375,17 +390,20 @@ class Parser {
      * the multiplication precedence level.        */
 
     private Expr multiplication() {
-        Expr expr = cast();
+        //Expr expr = cast();
+        Expr expr = unary();
 
         while (match(SLASH, STAR)) {
             Token operator = previous();
-            Expr right = cast();
+            //Expr right = cast();
+            Expr right = unary();
             expr = new Expr.Binary(expr, operator, right);
         }
 
         return expr;
     }
 
+    /*
     private Expr cast() {
         Expr expr = unary();
 
@@ -408,6 +426,7 @@ class Parser {
 
         return expr;
     }
+    */
 
     /* The unary operators are a bit different, as  *
      * we're using right recursion to get the right *
@@ -454,6 +473,10 @@ class Parser {
         while (true) {
             if (match(LEFT_PAREN)) {
                 expr = finishCall(expr);
+            } else if (match(DOT)) {
+                Token name = consume(IDENTIFIER,
+                        "Expected property name after '.'.");
+                expr = new Expr.Get(expr, name);
             } else {
                 break;
             }

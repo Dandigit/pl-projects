@@ -35,10 +35,6 @@ class Scanner {
         keywords.put("true",    TRUE);
         keywords.put("var",     VAR);
         keywords.put("while",   WHILE);
-        keywords.put("as",      AS);
-        keywords.put("num",     NUM);
-        keywords.put("bool",    BOOL);
-        keywords.put("str",     STR);
     }
 
     Scanner(String source) {
@@ -185,7 +181,9 @@ class Scanner {
         // Eat the close quote
         advance();
 
-        String value = source.substring(start + 1, current - 1);
+        // Handle escape sequences
+        String value = unescape(source.substring(start + 1, current - 1));
+
         addToken(STRING, value);
     }
 
@@ -230,6 +228,32 @@ class Scanner {
     private char advance() {
         ++current;
         return source.charAt(current -1);
+    }
+
+    private String unescape(String escaped) {
+        String finalString = "";
+
+        for (int i = 0; i < escaped.length(); ++i) {
+            if (escaped.charAt(i) == '\\') {
+                ++i;
+                switch (escaped.charAt(i)) {
+                    case 'n':
+                        finalString += "\n";
+                        break;
+
+                    case '\\':
+                        finalString += "\\";
+                        break;
+
+                    default:
+                        Lox.error(line, "Unrecognised escape sequence '\\" + escaped.charAt(i) + "'.");
+                }
+            } else {
+                finalString += escaped.charAt(i);
+            }
+        }
+
+        return finalString;
     }
 
     private void addToken(TokenType type) {
