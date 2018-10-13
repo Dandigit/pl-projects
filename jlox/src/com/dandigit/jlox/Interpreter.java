@@ -231,7 +231,7 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
                 return (double)left / (double)right;
             case STAR:
                 checkNumberOperands(expr.operator, left, right);
-                return (double)left / (double)right;
+                return (double)left * (double)right;
         }
 
         // Unreachable
@@ -357,6 +357,14 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
     public Void visitClassStmt(Stmt.Class stmt) {
         environment.define(stmt.name.lexeme, null);
 
+        Map<String, LoxFunction> classMethods = new HashMap<>();
+        for (Stmt.Function method : stmt.classMethods) {
+            LoxFunction function = new LoxFunction(method, environment, false);
+            classMethods.put(method.name.lexeme, function);
+        }
+
+        LoxClass metaclass = new LoxClass(null, stmt.name.lexeme + " metaclass", classMethods);
+
         Map<String, LoxFunction> methods = new HashMap<>();
         for (Stmt.Function method : stmt.methods) {
             LoxFunction function = new LoxFunction(method, environment,
@@ -364,7 +372,7 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
             methods.put(method.name.lexeme, function);
         }
 
-        LoxClass klass = new LoxClass(stmt.name.lexeme, methods);
+        LoxClass klass = new LoxClass(metaclass, stmt.name.lexeme, methods);
         environment.assign(stmt.name, klass);
         return null;
     }
