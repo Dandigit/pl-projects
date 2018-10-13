@@ -1,0 +1,2 @@
+javac -d out/production/jlox/com/dandigit/jlox src/com/dandigit/jlox/*.java
+

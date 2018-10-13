@@ -1,3 +1,2 @@
 #!/usr/bin/env bash
-javac -d out/production/jlox/com/dandigit/jlox src/com/dandigit/jlox/*.java
 java -cp out/production/jlox/com/dandigit/jlox com.dandigit.jlox.Lox $@
