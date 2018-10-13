@@ -58,13 +58,13 @@ class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
                     method.name.lexeme.equals("init") ?
                     FunctionType.INITIALIZER : FunctionType.METHOD
             );
-            resolveFunction(method, declaration);
+            resolveFunction(method.function, declaration);
         }
 
         for (Stmt.Function method : stmt.classMethods) {
             beginScope();
             scopes.peek().put("this", true);
-            resolveFunction(method, FunctionType.METHOD);
+            resolveFunction(method.function, FunctionType.METHOD);
             endScope();
         }
 
@@ -85,7 +85,7 @@ class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
         declare(stmt.name);
         define(stmt.name);
 
-        resolveFunction(stmt, FunctionType.FUNCTION);
+        resolveFunction(stmt.function, FunctionType.FUNCTION);
         return null;
     }
 
@@ -153,6 +153,12 @@ class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
             resolve(argument);
         }
 
+        return null;
+    }
+
+    @Override
+    public Void visitFunctionExpr(Expr.Function expr) {
+        resolveFunction(expr, FunctionType.FUNCTION);
         return null;
     }
 
@@ -233,7 +239,7 @@ class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
         expr.accept(this);
     }
 
-    private void resolveFunction(Stmt.Function function, FunctionType type) {
+    private void resolveFunction(Expr.Function function, FunctionType type) {
         FunctionType enclosingFunction = currentFunction;
         currentFunction = type;
 

@@ -176,6 +176,7 @@ class Scanner {
         // String without close quote
         if (isAtEnd()) {
             Lox.error(line, "Unterminated string.");
+            return;
         }
 
         // Eat the close quote

@@ -31,7 +31,12 @@ class Parser {
         try {
             // Look for declaration keywords
             if (match(CLASS)) return classDeclaration();
-            if (match(FUN)) return function("function");
+
+            if (check(FUN) && checkNext(IDENTIFIER)) {
+                consume(FUN, null);
+                return function("function");
+            }
+
             if (match(VAR)) return varDeclaration();
 
             // Otherwise, look for a statement
@@ -72,6 +77,10 @@ class Parser {
 
     private Stmt.Function function(String kind) {
         Token name = consume(IDENTIFIER, "Expected " + kind + " name.");
+        return new Stmt.Function(name, functionBody(kind));
+    }
+
+    private Expr.Function functionBody(String kind) {
         consume(LEFT_PAREN, "Expected '(' after " + kind + " name.");
 
         List<Token> paramaters = new ArrayList<>();
@@ -88,7 +97,7 @@ class Parser {
 
         consume(LEFT_BRACE, "Expected '{' before " + kind + " body.");
         List<Stmt> body = block();
-        return new Stmt.Function(name, paramaters, body);
+        return new Expr.Function(paramaters, body);
     }
 
     /* STATEMENTS: don't need to be global or in a block. */
@@ -507,6 +516,8 @@ class Parser {
             return new Expr.Literal(previous().literal);
         }
 
+        if (match(FUN)) return functionBody("function");
+
         if (match(THIS)) return new Expr.This(previous());
 
         if (match(IDENTIFIER)) {
@@ -546,6 +557,12 @@ class Parser {
     private boolean check(TokenType type) {
         if (isAtEnd()) return false;
         return peek().type == type;
+    }
+
+    private boolean checkNext(TokenType type) {
+        if (isAtEnd()) return false;
+        if (tokens.get(current + 1).type == EOF) return false;
+        return tokens.get(current + 1).type == type;
     }
 
     private Token advance() {

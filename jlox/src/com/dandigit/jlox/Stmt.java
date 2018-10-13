@@ -48,18 +48,16 @@ abstract class Stmt {
         final Expr expression;
     }
     static class Function extends Stmt {
-        Function(Token name, List<Token> params, List<Stmt> body) {
+        Function(Token name, Expr.Function function) {
             this.name = name;
-            this.params = params;
-            this.body = body;
+            this.function = function;
         }
 
         <R> R accept(Visitor<R> visitor) {
             return visitor.visitFunctionStmt(this);
         }
         final Token name;
-        final List<Token> params;
-        final List<Stmt> body;
+        final Expr.Function function;
     }
     static class If extends Stmt {
         If(Expr condition, Stmt thenBranch, Stmt elseBranch) {
