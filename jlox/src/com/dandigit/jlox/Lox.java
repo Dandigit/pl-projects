@@ -20,7 +20,12 @@ public class Lox {
             System.exit(64);
         } else if (args.length == 1) {
             // We can run the provided file...
-            runFile(args[0]);
+            try {
+                runFile(args[0]);
+            } catch (IOException exception) {
+                System.err.println("Error: Unable to read file '" + args[0] + "'.");
+                System.exit(65);
+            }
         } else {
             // Or run a REPL
             runPrompt();
@@ -33,8 +38,8 @@ public class Lox {
         run(new String(bytes, Charset.defaultCharset()));
 
         // Don't try and execute code that has a known error
-        if (hadError) System.exit(65);
-        if (hadRuntimeError) System.exit(70);
+        if (hadError) System.exit(70);
+        if (hadRuntimeError) System.exit(75);
     }
 
     public static void runPrompt() throws IOException {
