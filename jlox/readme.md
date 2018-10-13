@@ -10,5 +10,4 @@ Along with the code in Crafting Interpreters, I've implemented:
 - Getter methods
 - `print` as a foreign function
 - Other foreign functions like `put()` and `getln()`
-- Support for overloadable type casting
 - Lambada syntax
