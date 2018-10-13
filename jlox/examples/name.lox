@@ -1,3 +1,3 @@
-put("What is your name? ");
-var name = getln();
-print("Hello, " + name as str + "!");
+put("What is your name? ")
+var name = getln()
+print("Hello, " + name as str + "!")
