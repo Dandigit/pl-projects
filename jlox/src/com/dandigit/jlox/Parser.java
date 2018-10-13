@@ -81,19 +81,25 @@ class Parser {
     }
 
     private Expr.Function functionBody(String kind) {
-        consume(LEFT_PAREN, "Expected '(' after " + kind + " name.");
+        List<Token> paramaters = null;
 
-        List<Token> paramaters = new ArrayList<>();
-        if (!check(RIGHT_PAREN)) {
-            do {
-                if (paramaters.size() >= 8) {
-                    error(peek(), "Cannot have more that 8 paramaters.");
-                }
+        // Allow omitting the parameter list entirely in method getters.
+        // A parameterless function will have an empty list of parameters,
+        // whereas a getter will have a null list of parameters. Cute right?
+        if (!kind.equals("method") || check(LEFT_PAREN)) {
+            consume(LEFT_PAREN, "Expected '(' after " + kind + "name.");
+            paramaters = new ArrayList<>();
+            if (!check(RIGHT_PAREN)) {
+                do {
+                    if (paramaters.size() >= 8) {
+                        error(peek(), "Cannot have more that 8 paramaters.");
+                    }
 
-                paramaters.add(consume(IDENTIFIER, "Expected paramater name."));
-            } while (match(COMMA));
+                    paramaters.add(consume(IDENTIFIER, "Expected paramater name."));
+                } while (match(COMMA));
+            }
+            consume(RIGHT_PAREN, "Expected ')' after parameters.");
         }
-        consume(RIGHT_PAREN, "Expected ')' after parameters.");
 
         consume(LEFT_BRACE, "Expected '{' before " + kind + " body.");
         List<Stmt> body = block();
