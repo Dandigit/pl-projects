@@ -15,4 +15,5 @@ Along with the code in Crafting Interpreters, I've implemented:
 ## To do
 - Implement inheritance
 - File read/write class
+- Implicit semicolons
 - `import` statements
