@@ -7,6 +7,12 @@ Along with the code in Crafting Interpreters, I've implemented:
 - Comma operator
 - Ternary (conditional) operator
 - Static class methods (metaclass)
+- Getter methods
 - `print` as a foreign function
 - Other foreign functions like `put()` and `getln()`
-- Support for overloadable type casting
+- Lambada syntax
+
+## To do
+- Implement inheritance
+- File read/write class
+- `import` statements
