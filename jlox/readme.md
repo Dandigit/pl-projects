@@ -14,6 +14,5 @@ Along with the code in Crafting Interpreters, I've implemented:
 - Lambada syntax
 
 ## To do
-- File read/write class
-- Implicit semicolons
 - `import` statements
+- Class wrapper around file functions (requires `import`)
