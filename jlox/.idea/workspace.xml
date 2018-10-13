@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7c89c4ff-53cd-48bd-b506-174064dbda37" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/com/dandigit/jlox/Lox.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dandigit/jlox/Lox.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/dandigit/jlox/Scanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dandigit/jlox/Scanner.java" afterDir="false" />
-    </list>
+    <list default="true" id="7c89c4ff-53cd-48bd-b506-174064dbda37" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -149,7 +146,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Scanner.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="175">
-              <caret line="103" column="62" selection-start-line="103" selection-start-column="62" selection-end-line="103" selection-end-column="62" />
+              <caret line="103" column="64" selection-start-line="103" selection-start-column="64" selection-end-line="103" selection-end-column="64" />
               <folding>
                 <element signature="e#6758#6759#0" expanded="true" />
                 <element signature="e#6807#6808#0" expanded="true" />
@@ -367,7 +364,7 @@
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/dan/Source/Git/pl-projects/jlox/src/Token.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539473184815" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539473295790" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
@@ -412,12 +409,12 @@
       <option name="presentableId" value="Default" />
       <updated>1538095948275</updated>
       <workItem from="1539346572538" duration="58000" />
-      <workItem from="1539346664521" duration="19242000" />
+      <workItem from="1539346664521" duration="19511000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19300000" />
+    <option name="totallyTimeSpent" value="19569000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -430,7 +427,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="993" y="25" width="927" height="1055" extended-state="4" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.3030647" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -699,7 +695,7 @@
     <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Scanner.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
-          <caret line="103" column="62" selection-start-line="103" selection-start-column="62" selection-end-line="103" selection-end-column="62" />
+          <caret line="103" column="64" selection-start-line="103" selection-start-column="64" selection-end-line="103" selection-end-column="64" />
           <folding>
             <element signature="e#6758#6759#0" expanded="true" />
             <element signature="e#6807#6808#0" expanded="true" />
