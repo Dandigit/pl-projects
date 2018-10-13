@@ -57,7 +57,7 @@ public class Lox {
         // Infinitely read lines from the console and run() them
         while (true) {
             System.out.print("lox > ");
-            run(reader.readLine());
+            run(reader.readLine() + "\n");
 
             // Don't kill the whole session if there was an error
             hadError = false;

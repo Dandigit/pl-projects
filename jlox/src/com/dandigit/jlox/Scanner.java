@@ -16,6 +16,10 @@ class Scanner {
     private int current = 0;
     private int line = 1;
 
+    // We need to ignore newlines within parentheses, so we keep track
+    // of how many are open.
+    private int openParen = 0;
+
     private static final Map<String, TokenType> keywords;
 
     static {
@@ -57,8 +61,8 @@ class Scanner {
         char c = advance();
         switch (c) {
             // Single character tokens
-            case '(': addToken(LEFT_PAREN); break;
-            case ')': addToken(RIGHT_PAREN); break;
+            case '(': addToken(LEFT_PAREN); ++openParen; break;
+            case ')': addToken(RIGHT_PAREN); --openParen; break;
             case '{': addToken(LEFT_BRACE); break;
             case '}': addToken(RIGHT_BRACE); break;
             case ',': addToken(COMMA); break;
@@ -93,8 +97,18 @@ class Scanner {
 
             case '"': string(); break;
 
-            // Handle newline
-            case '\n': ++line; break;
+            // Handle newline/eof
+            case '\n':
+                ++line;
+                // Do we need an implicit semicolon here?
+                Token lastToken = tokens.get(tokens.size() - 1);
+                if (openParen == 0 &&
+                        lastToken.type != SEMICOLON &&
+                        lastToken.type != LEFT_BRACE &&
+                        lastToken.type != RIGHT_BRACE)
+                    addToken(SEMICOLON);
+
+                break;
 
             // Useless characters, but ones we must ignore
             case ' ':
@@ -206,6 +220,10 @@ class Scanner {
     private char peekNext() {
         if (current + 1 >= source.length()) return '\0';
         return source.charAt(current + 1);
+    }
+
+    private char beforePrevious() {
+        return source.charAt(current - 2);
     }
 
     private boolean isAlphaOrUnderscore(char c) {
