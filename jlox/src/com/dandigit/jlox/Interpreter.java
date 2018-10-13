@@ -6,6 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
@@ -17,7 +20,9 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
     Interpreter() {
         globals.define("print", new LoxCallable() {
             @Override
-            public int arity() { return 1; }
+            public int arity() {
+                return 1;
+            }
 
             @Override
             public Object call(Interpreter interpreter,
@@ -27,12 +32,16 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
             }
 
             @Override
-            public String toString() { return "<native fn>"; }
+            public String toString() {
+                return "<native fn>";
+            }
         });
 
         globals.define("put", new LoxCallable() {
             @Override
-            public int arity() { return 1; }
+            public int arity() {
+                return 1;
+            }
 
             @Override
             public Object call(Interpreter interpreter,
@@ -42,12 +51,16 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
             }
 
             @Override
-            public String toString() { return "<native fn>"; }
+            public String toString() {
+                return "<native fn>";
+            }
         });
 
         globals.define("getln", new LoxCallable() {
             @Override
-            public int arity() { return 0; }
+            public int arity() {
+                return 0;
+            }
 
             @Override
             public Object call(Interpreter interpreter,
@@ -61,26 +74,34 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
             }
 
             @Override
-            public String toString() { return "<native fn>"; }
+            public String toString() {
+                return "<native fn>";
+            }
         });
 
         globals.define("clock", new LoxCallable() {
             @Override
-            public int arity() { return 0; }
+            public int arity() {
+                return 0;
+            }
 
             @Override
             public Object call(Interpreter interpreter,
                                List<Object> arguments) {
-                return (double)System.currentTimeMillis() / 1000;
+                return (double) System.currentTimeMillis() / 1000;
             }
 
             @Override
-            public String toString() { return "<native fn>"; }
+            public String toString() {
+                return "<native fn>";
+            }
         });
 
         globals.define("str", new LoxCallable() {
             @Override
-            public int arity() { return 1; }
+            public int arity() {
+                return 1;
+            }
 
             @Override
             public Object call(Interpreter interpreter,
@@ -89,7 +110,103 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
             }
 
             @Override
-            public String toString() { return "<native fn>"; }
+            public String toString() {
+                return "<native fn>";
+            }
+        });
+
+        globals.define("readFile", new LoxCallable() {
+            @Override
+            public int arity() {
+                return 1;
+            }
+
+            @Override
+            public Object call(Interpreter interpreter,
+                               List<Object> arguments) {
+                String contents;
+
+                try {
+                    // File path is 1st argument
+                    BufferedReader br = new BufferedReader(new FileReader(stringify(arguments.get(0))));
+                    String currentLine;
+                    contents = "";
+                    while ((currentLine = br.readLine()) != null) {
+                        contents += currentLine + "\n";
+                    }
+                } catch (IOException exception) {
+                    return null;
+                }
+
+                return contents;
+            }
+
+            @Override
+            public String toString() {
+                return "<native fn>";
+            }
+        });
+
+        globals.define("writeFile", new LoxCallable() {
+            @Override
+            public int arity() {
+                return 2;
+            }
+
+            @Override
+            public Object call(Interpreter interpreter,
+                               List<Object> arguments) {
+                try {
+                    // File path is 1st argument
+                    BufferedWriter bw = new BufferedWriter(new FileWriter(stringify(arguments.get(0))));
+                    // Data is 2nd argument
+                    bw.write(stringify(arguments.get(1)));
+
+                    bw.close();
+                } catch (IOException exception) {
+                    System.err.print("Unable to write file '");
+                    System.err.print(arguments.get(0));
+                    System.err.println("'.");
+                }
+
+                return null;
+            }
+
+            @Override
+            public String toString() {
+                return "<native fn>";
+            }
+        });
+
+        globals.define("appendFile", new LoxCallable() {
+            @Override
+            public int arity() {
+                return 2;
+            }
+
+            @Override
+            public Object call(Interpreter interpreter,
+                               List<Object> arguments) {
+                try {
+                    // File path is 1st argument
+                    BufferedWriter bw = new BufferedWriter(new FileWriter(stringify(arguments.get(0)), true));
+                    // Data is 2nd argument
+                    bw.append(stringify(arguments.get(1)));
+
+                    bw.close();
+                } catch (IOException exception) {
+                    System.err.print("Unable to write file '");
+                    System.err.print(arguments.get(0));
+                    System.err.println("'.");
+                }
+
+                return null;
+            }
+
+            @Override
+            public String toString() {
+                return "<native fn>";
+            }
         });
     }
 
