@@ -11,3 +11,8 @@ Along with the code in Crafting Interpreters, I've implemented:
 - `print` as a foreign function
 - Other foreign functions like `put()` and `getln()`
 - Lambada syntax
+
+## To do
+- Implement inheritance
+- File read/write class
+- `import` statements
