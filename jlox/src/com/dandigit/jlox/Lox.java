@@ -13,18 +13,26 @@ public class Lox {
     static boolean hadError = false;
     static boolean hadRuntimeError = false;
 
+    class ErrorCode
+    {
+        public static final int INVALID_ARGUMENTS = 64;
+        public static final int FILE_ERROR = 65;
+        public static final int STATIC_ERROR = 70;
+        public static final int RUNTIME_ERROR = 75;
+    }
+
     public static void main(String[] args) throws IOException {
         if (args.length > 1) {
             // Too many arguments
             System.out.println("Usage: jlox [script]");
-            System.exit(64);
+            System.exit(ErrorCode.INVALID_ARGUMENTS);
         } else if (args.length == 1) {
             // We can run the provided file...
             try {
                 runFile(args[0]);
             } catch (IOException exception) {
                 System.err.println("Error: Unable to read file '" + args[0] + "'.");
-                System.exit(65);
+                System.exit(ErrorCode.FILE_ERROR);
             }
         } else {
             // Or run a REPL
@@ -38,8 +46,8 @@ public class Lox {
         run(new String(bytes, Charset.defaultCharset()));
 
         // Don't try and execute code that has a known error
-        if (hadError) System.exit(70);
-        if (hadRuntimeError) System.exit(75);
+        if (hadError) System.exit(ErrorCode.STATIC_ERROR);
+        if (hadRuntimeError) System.exit(ErrorCode.RUNTIME_ERROR);
     }
 
     public static void runPrompt() throws IOException {
