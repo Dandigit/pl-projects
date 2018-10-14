@@ -55,7 +55,6 @@ var sum = add
 sum(1, 2) // 3
 ```
 
-
 \
 [<- Previous chapter](./04-data.md) | [Next chapter ->](./06-classes.md)
 
