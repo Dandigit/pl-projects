@@ -1,5 +1,5 @@
 # Overview
-This implementation of Lox is based on the fantastic book, [Crafting Interpreters](https://craftinginterpreters.com). However, it's not exactly the same. You'll see why below.
+This implementation of Lox is based on the book [Crafting Interpreters](https://craftinginterpreters.com). However, it's not exactly the same. You'll see why below.
 
 ## Operators
 Below are all operators in Lox, listed from highest to lowest precedence.
