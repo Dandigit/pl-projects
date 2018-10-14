@@ -4,7 +4,7 @@
 ## Notable additions
 Along with the code in Crafting Interpreters, I've implemented:
 - Implicit semicolons
-- Multi-line comments
+- Multi-line comments (they can nest!)
 - Comma operator
 - Ternary (conditional) operator
 - Static class methods (metaclass)
