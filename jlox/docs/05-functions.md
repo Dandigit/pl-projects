@@ -42,7 +42,7 @@ counter() // "2".
 The variable, `i`, is static, as it's located within the closure. This behaviour allows functions to behave somewhat like 
 classes, manipulating a common dataset.
 
-# First-class
+## First-class
 As the previous example showed, functions in Lox are considered first class values, meaning you can pass them around just like 
 you would for any other type of data. This works perfectly fine:
 ```
