@@ -21,122 +21,21 @@ Below are all operators in Lox, listed from highest to lowest precedence.
 
 ## Statements
 ### General
-**block:**
-```
-{
-    <statement>
-}
-```
-
-**expression**
-```
-<expression>
-```
-
-### Variables
-**declaration:**
-```
-var v = "hi"
-```
-
-**constant declaration:**
-```
-const v = "hi"
-```
+Lox supports block statements, which group multiple statements into one. `{}`
+Expression statements evaluate an expression and discard the result.
+[example](../examples/general.lox)
 
 ### Functions
-**named function:**
-```
-fun square(x) {
-    return x * x
-}
-```
-
-**lambada: (anonymous function)**
-```
-fun (x) {
-    return x * x
-}
-```
-
-**return:**
-```
-return <expression>
-```
+Functions in Lox are defined with the `fun` keywords. They can take a maximum of 8 paramaters.
+Lambadas (anonymous functions) are also supported.
+[example](../examples/function.lox)
 
 ### Classes
-**declaration:**
-```
-class Foo {}
-```
-
-**methods:**
-```
-class Foo {
-    init() {
-        // Constructor
-    }
-    
-    otherMethod() {
-        print("foo")
-    }
-```
-
-**static methods:**
-```
-class Foo {
-    class staticMethod(x) {
-        put(x)
-    }
-    
-    notStaticMethod(x) {
-        print(x)
-    }
-}
-```
-
-**getters:**
-```
-class Foo {
-    area {
-        return 3.1231244
-    }
-}
-
-var foo = Foo()
-foo.area // Calls the getter
-```
-
-**new instance:**
-```
-Foo() // Creates (and discards) a new instance of Foo.
-var foo = Foo() // Creates (and assigns to a variable) a new instance of Foo.
-```
+Lox classes can be defined with the `class` keyword. Inheritance is supported.
+Classes can define static or instance methods and getter methods. Values can be assigned through `this`.
+[example](../examples/class.lox)
 
 ### Control flow
-**if:**
-```
-if (condition) <statement>
-
-if (condition) {
-    <statement>
-}
-```
-
-**while:**
-```
-while (condition) statement
-
-while (condition) {
-    <statement>
-}
-```
-
-**for:**
-```
-for (initialization; condition; incrementer) <statement>
-
-for (<initialization>; <condition>; <incrementer>) {
-    <statement>
-}
-```
+Lox supports if/else conditional statements.
+While loops and C-style for loops are also supported.
+[example](../examples/control-flow.lox)
