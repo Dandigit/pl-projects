@@ -13,6 +13,5 @@ Along with the code in Crafting Interpreters, I've implemented:
 - Other foreign functions like `put()` and `getln()`
 - Lambada syntax
 
-## To do
-- `import` statements
-- Class wrapper around file functions (requires `import`)
+## Get started
+Want to get started writing Lox? There's concise documentation to introduce you to the language [here](./docs/00-contents.md).
