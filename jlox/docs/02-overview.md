@@ -50,4 +50,4 @@ Lox supports if/else conditional statements. While loops and C-style for loops a
 \
 [<- Previous chapter](./01-setup.md) | [Next chapter ->](./03-data.md)
 
-[Contents](./00-contents.md)
+[Table of contents](./00-contents.md)
