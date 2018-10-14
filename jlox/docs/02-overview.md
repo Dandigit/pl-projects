@@ -40,3 +40,5 @@ Lox classes can be defined with the `class` keyword. Inheritance is supported. C
 Lox supports if/else conditional statements. While loops and C-style for loops are also supported.
 
 [example](../examples/control-flow.lox)
+
+[<- Previous chapter](./01-setup.md)    [Next chapter ->](./03-variables.md)
