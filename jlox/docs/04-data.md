@@ -35,6 +35,6 @@ life = 42 // error
 
 
 \
-[<- Previous chapter](./02-basic-semantics.md) | [Next chapter ->](./04-functions.md)
+[<- Previous chapter](./03-basic-semantics.md) | [Next chapter ->](./05-functions.md)
 
 [Table of contents](./00-contents.md)
