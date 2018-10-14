@@ -8,6 +8,7 @@ Lox is a dynamically typed language, meaning that the same variable can represen
  - `bool`: True or false (or truthy/falsey), e.g. `false`, `2 == 2.0`
  - `str`: An ASCII string. Literals are wrapped in `"` quotes, e.g `"Hello, world!"`
  - `nil`: Nothing. Nil. Null. None. e.g. `nil`
+ - `fun`: A function. Can be called with `()`. e.g. `fun (x) { return x; }`
 
 ## Storing data
 Variables can store data in Lox. They can be `volatile` (able to change) or `constant` (a constant value).
