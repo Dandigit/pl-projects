@@ -19,3 +19,5 @@ Now, on to the final step...
 You should now have a working `./jlox` script in the pl-projects/jlox directory. Fire up the REPL with `./jlox` or run a file with `./jlox file-name`.
 
 [Next chapter ->](./02-overview.md)
+
+[Table of contents](./00-contents.md)
