@@ -30,3 +30,8 @@ Lox supports C-style single and multi-line comments, plus they can nest!
 nest now? */
 That's cool! */
 ```
+
+\
+[<- Previous chapter](./02-overview.md) | [Next chapter ->](./04-data.md)
+
+[Table of contents](./00-contents.md)
