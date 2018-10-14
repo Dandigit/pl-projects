@@ -16,24 +16,17 @@ There's two extremes in the world of semicolons:
 - `put; them; on; everything;`
 - `dontPutThemAnyWhere`
 
-The first approach gives a lot of freedom in how you format your code, but comes with the **disgusting** statement terminator 
-we've come to know and hate.
-
-The second approach cleans thing up, making them look a bit more 2018 than the former, but isn't free of downsides. For example,
-sometimes you can't put multiple statements on one line:
-```
-do(); something() # Python syntax error
-```
-And other times you can't choose how you format your code! In Go:
-```
-if true {
-    doSomething();
-}
-else {
-    doAnotherThing();
-}
-```
-That won't compile! So there's no perfect system! Or is there?
+Both have their ups and downs, and neither are perfect. Lox strikes a balance.
 
 In Lox, semicolons are **optional**, meaning you can still separate statements with them. And, they're only ever inserted where
-they traditionally would be, so no more Go-style `};` tokens.
+they traditionally would be in a C-style language, meaning you're still free to format your code how you want.
+
+## Comments
+Lox supports C-style single and multi-line comments, plus they can nest!
+```
+// I may be a comment, but I don't have an opinion
+
+/* We can /*
+nest now? */
+That's cool! */
+```
