@@ -36,3 +36,8 @@ print(Math.square(3))
 ```
 
 Pretty nifty, huh?
+
+\
+[<- Previous chapter](./06-classes.md) | [Next chapter ->](./08-standard-library.md)
+
+[Table of contents](./00-contents.md)
