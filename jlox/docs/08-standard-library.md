@@ -16,3 +16,8 @@ The `File` class allows reading/writing of files.
 ## Casting
 - `str(value)` returns `value` as a string.
 - `num(value)` returns `value` as a number.
+
+\
+[<- Previous chapter](./07-modules.md)
+
+[Table of contents](./00-contents.md)
