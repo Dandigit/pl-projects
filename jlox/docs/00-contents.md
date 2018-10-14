@@ -6,8 +6,8 @@ The Lox Programming Language
 **The Basics**
 1. [Setting up](./01-setup.md)
 2. [Overview](./02-overview.md)
-3. [Basic semantics](./04-basic-semantics.md)
-4. [Data](./03-data.md)
+3. [Basic semantics](./03-basic-semantics.md)
+4. [Data](./04-data.md)
 5. [Functions](./05-functions.md)
 6. [Classes](./06-classes.md)
 7. [Modules](./07-modules.md)
