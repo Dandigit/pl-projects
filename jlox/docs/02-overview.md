@@ -47,4 +47,4 @@ Lox supports if/else conditional statements. While loops and C-style for loops a
 
 [example](../examples/control-flow.lox)
 
-[<- Previous chapter](./01-setup.md) | [Next chapter ->](./03-data.md)
+[^ Contents](./00-contents.md) | [<- Previous chapter](./01-setup.md) | [Next chapter ->](./03-data.md)
