@@ -1,11 +1,10 @@
 # Overview
 This implementation of Lox is based on the fantastic book, [Crafting Interpreters](https://craftinginterpreters.com). However, it's not exactly the same. You'll see why below.
 
-## Syntax
-### Operators
+## Operators
 Below are all operators in Lox, listed from highest to lowest precedence.
 
-| Operator(s) | Type | Associativity |
+| Operator(s)          | Type           | Associativity |
 | :------------------: | -------------- | ------------- |
 | `()` (call)          | Unary postfix  | Left-to-right |
 | `!`, `-`             | Unary prefix   | Right-to-left |
@@ -20,8 +19,8 @@ Below are all operators in Lox, listed from highest to lowest precedence.
 | `,`                  | Binary         | Left-to-right |
 
 
-### Statements
-#### General
+## Statements
+### General
 **block:**
 ```
 {
@@ -34,7 +33,7 @@ Below are all operators in Lox, listed from highest to lowest precedence.
 <expression>
 ```
 
-#### Variables
+### Variables
 **declaration:**
 ```
 var v = "hi"
@@ -45,7 +44,76 @@ var v = "hi"
 const v = "hi"
 ```
 
-#### Control flow
+### Functions
+**named function:**
+```
+fun square(x) {
+    return x * x
+}
+```
+
+**lambada: (anonymous function)**
+```
+fun (x) {
+    return x * x
+}
+```
+
+**return:**
+```
+return <expression>
+```
+
+### Classes
+**declaration:**
+```
+class Foo {}
+```
+
+**methods:**
+```
+class Foo {
+    init() {
+        // Constructor
+    }
+    
+    otherMethod() {
+        print("foo")
+    }
+```
+
+**static methods:**
+```
+class Foo {
+    class staticMethod(x) {
+        put(x)
+    }
+    
+    notStaticMethod(x) {
+        print(x)
+    }
+}
+```
+
+**getters:**
+```
+class Foo {
+    area {
+        return 3.1231244
+    }
+}
+
+var foo = Foo()
+foo.area // Calls the getter
+```
+
+**new instance:**
+```
+Foo() // Creates (and discards) a new instance of Foo.
+var foo = Foo() // Creates (and assigns to a variable) a new instance of Foo.
+```
+
+### Control flow
 **if:**
 ```
 if (condition) <statement>
