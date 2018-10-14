@@ -1,6 +1,12 @@
 # Overview
 This implementation of Lox is based on the book [Crafting Interpreters](https://craftinginterpreters.com). However, it's not exactly the same. You'll see why below.
 
+## Features
+- Implicit semicolons
+- Nesting multiline comments
+- Classes with inheritance, getter methods and static methods
+- An extended standard library
+
 ## Operators
 Below are all operators in Lox, listed from highest to lowest precedence.
 
