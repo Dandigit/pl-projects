@@ -32,3 +32,9 @@ Constant variables, however, cannot be reassigned.
 const life = 41 // oh no!
 life = 42 // error
 ```
+
+
+\
+[<- Previous chapter](./02-basic-semantics.md) | [Next chapter ->](./04-functions.md)
+
+[Table of contents](./00-contents.md)
