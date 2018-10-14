@@ -25,27 +25,8 @@ Below are all operators in Lox, listed from highest to lowest precedence.
 | `,`                  | Binary         | Left-to-right |
 
 
-## Statements
-### General
-Lox supports block statements, which group multiple statements into one.
-Expression statements evaluate an expression and discard the result.
-
-[example](../examples/general.lox)
-
-### Functions
-Functions in Lox are defined with the `fun` keyword. They can take a maximum of 8 paramaters. Lambadas (anonymous functions) are also supported.
-
-[example](../examples/function.lox)
-
-### Classes
-Lox classes can be defined with the `class` keyword. Inheritance is supported. Classes can define static or instance methods and getter methods. Values can be assigned through `this`.
-
-[example](../examples/class.lox)
-
-### Control flow
-Lox supports if/else conditional statements. While loops and C-style for loops are also supported.
-
-[example](../examples/control-flow.lox)
+## Examples
+Examples of pretty much every language feature are available in [the examples directory](../examples).
 
 \
 [<- Previous chapter](./01-setup.md) | [Next chapter ->](./03-basic-semantics.md)
