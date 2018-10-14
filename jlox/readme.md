@@ -14,6 +14,6 @@ Along with the code in Crafting Interpreters, I've implemented:
 - Lambada syntax
 
 ## To do
-- Const variables
+- Constant variables
 - `import` statements
 - Class wrapper around file functions (requires `import`)
