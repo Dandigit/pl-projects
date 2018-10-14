@@ -18,3 +18,57 @@ Below are all operators in Lox, listed from highest to lowest precedence.
 | `? :`                | Ternary        | Right-to-left |
 | `=`                  | Binary         | Right-to-left |
 | `,`                  | Binary         | Left-to-right |
+
+
+### Statements
+#### General
+**block:**
+```
+{
+    <statement>
+}
+```
+
+**expression**
+```
+<expression>
+```
+
+#### Variables
+**declaration:**
+```
+var v = "hi"
+```
+
+**constant declaration:**
+```
+const v = "hi"
+```
+
+#### Control flow
+**if:**
+```
+if (condition) <statement>
+
+if (condition) {
+    <statement>
+}
+```
+
+**while:**
+```
+while (condition) statement
+
+while (condition) {
+    <statement>
+}
+```
+
+**for:**
+```
+for (initialization; condition; incrementer) <statement>
+
+for (<initialization>; <condition>; <incrementer>) {
+    <statement>
+}
+```
