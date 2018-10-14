@@ -4,6 +4,7 @@ This implementation of Lox is based on the fantastic book, [Crafting Interpreter
 ## Syntax
 ### Operators
 Below are all operators in Lox, listed from highest to lowest precedence.
+
 | Operator(s) | Type | Associativity |
 | :------------------: | -------------- | ------------- |
 | `()` (call)          | Unary postfix  | Left-to-right |
