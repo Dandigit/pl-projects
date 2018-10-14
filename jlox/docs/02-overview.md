@@ -21,29 +21,22 @@ Below are all operators in Lox, listed from highest to lowest precedence.
 
 ## Statements
 ### General
-Lox supports block statements, which group multiple statements into one. `{}`
-
+Lox supports block statements, which group multiple statements into one.
 Expression statements evaluate an expression and discard the result.
 
 [example](../examples/general.lox)
 
 ### Functions
-Functions in Lox are defined with the `fun` keywords. They can take a maximum of 8 paramaters.
-
-Lambadas (anonymous functions) are also supported.
+Functions in Lox are defined with the `fun` keywords. They can take a maximum of 8 paramaters. Lambadas (anonymous functions) are also supported.
 
 [example](../examples/function.lox)
 
 ### Classes
-Lox classes can be defined with the `class` keyword. Inheritance is supported.
-
-Classes can define static or instance methods and getter methods. Values can be assigned through `this`.
+Lox classes can be defined with the `class` keyword. Inheritance is supported. Classes can define static or instance methods and getter methods. Values can be assigned through `this`.
 
 [example](../examples/class.lox)
 
 ### Control flow
-Lox supports if/else conditional statements.
-
-While loops and C-style for loops are also supported.
+Lox supports if/else conditional statements. While loops and C-style for loops are also supported.
 
 [example](../examples/control-flow.lox)
