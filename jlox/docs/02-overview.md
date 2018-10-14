@@ -27,7 +27,7 @@ Expression statements evaluate an expression and discard the result.
 [example](../examples/general.lox)
 
 ### Functions
-Functions in Lox are defined with the `fun` keywords. They can take a maximum of 8 paramaters. Lambadas (anonymous functions) are also supported.
+Functions in Lox are defined with the `fun` keyword. They can take a maximum of 8 paramaters. Lambadas (anonymous functions) are also supported.
 
 [example](../examples/function.lox)
 
@@ -41,4 +41,4 @@ Lox supports if/else conditional statements. While loops and C-style for loops a
 
 [example](../examples/control-flow.lox)
 
-[<- Previous chapter](./01-setup.md) ------ [Next chapter ->](./03-variables.md)
+[<- Previous chapter](./01-setup.md) ------ [Next chapter ->](./03-data.md)
