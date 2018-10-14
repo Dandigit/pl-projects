@@ -18,7 +18,7 @@ To define a volatile variable, use the `var` keyword:
 var foo = 2
 ```
 
-To define a constant variable, use the `const` keyword: (not implemented yet)
+To define a constant variable, use the `const` keyword:
 ```
 const goo = "I do not change."
 ```
