@@ -1,24 +1,26 @@
 #include <stdio.h>
 
 #include "../h/common.h"
+#include "../h/compiler.h"
 #include "../h/debug.h"
 #include "../h/memory.h"
 #include "../h/vm.h"
+
+#define MAX_STACK_PER_INSTRUCTION 1
 
 VM vm;
 
 void initVM() {
     vm.stack = NULL;
-    vm.stackCapacity = 0;
     resetStack();
 }
 
 void freeVM() {
-
+    FREE_ARRAY(Value, vm.stack, vm.chunk->count);
 }
 
 static void resetStack() {
-    vm.stackCount = 0;
+    vm.stackTop = vm.stack;
 }
 
 static InterpretResult run() {
@@ -37,9 +39,9 @@ static InterpretResult run() {
 #ifdef DEBUG_TRACE_EXECUTION
         // Show the contents of the stack
         printf("          ");
-        for (int index = 0; index < vm.stackCount; ++index) {
+        for (Value *slot = vm.stack; slot < vm.stackTop; ++slot) {
             printf("[ ");
-            printValue(vm.stack[index]);
+            printValue(*slot);
             printf(" ]");
         }
         printf("\n");
@@ -77,25 +79,26 @@ static InterpretResult run() {
 #undef BINARY_OP
 }
 
-InterpretResult interpret(Chunk *chunk) {
+/*InterpretResult interpret(Chunk *chunk) {
     vm.chunk = chunk;
     vm.ip = vm.chunk->code;
+    vm.stack = GROW_ARRAY(vm.stack, Value, 0,
+            vm.chunk->count * MAX_STACK_PER_INSTRUCTION);
+    resetStack();
     return run();
+}*/
+
+InterpretResult interpret(const char *source) {
+    compile(source);
+    return INTERPRET_OK;
 }
 
 void push(Value value) {
-    if (vm.stackCapacity < vm.stackCount + 1) {
-        int oldCapacity = vm.stackCapacity;
-        vm.stackCapacity = GROW_STACK_CAPACITY(oldCapacity);
-        vm.stack = GROW_ARRAY(vm.stack, Value,
-                oldCapacity, vm.stackCapacity);
-    }
-
-    vm.stack[vm.stackCount] = value;
-    ++vm.stackCount;
+    *vm.stackTop = value;
+    ++vm.stackTop;
 }
 
 Value pop() {
-    --vm.stackCount;
-    return vm.stack[vm.stackCount];
+    --vm.stackTop;
+    return *vm.stackTop;
 }
