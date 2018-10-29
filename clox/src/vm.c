@@ -6,6 +6,8 @@
 #include "../h/memory.h"
 #include "../h/vm.h"
 
+// The maximum amount of values a single instruction
+// can push to the stack.
 #define MAX_STACK_PER_INSTRUCTION 1
 
 VM vm;
@@ -89,8 +91,24 @@ static InterpretResult run() {
 }*/
 
 InterpretResult interpret(const char *source) {
-    compile(source);
-    return INTERPRET_OK;
+    Chunk chunk;
+    initChunk(&chunk);
+
+    if (!compile(source, &chunk)) {
+        freeChunk(&chunk);
+        return INTERPRET_COMPILE_ERROR;
+    }
+
+    vm.chunk = &chunk;
+    vm.ip = vm.chunk->code;
+    vm.stack = GROW_ARRAY(vm.stack, Value, 0,
+            vm.chunk->count * MAX_STACK_PER_INSTRUCTION);
+    resetStack();
+
+    InterpretResult result = run();
+
+    freeChunk(&chunk);
+    return result;
 }
 
 void push(Value value) {

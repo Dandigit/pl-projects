@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h?
+#include <string.h>
 
 #include "../h/common.h"
 #include "../h/chunk.h"
