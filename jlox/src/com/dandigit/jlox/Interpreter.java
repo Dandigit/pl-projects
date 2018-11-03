@@ -205,6 +205,33 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
                 return "<native fn>";
             }
         });
+
+        globals.define("len", new LoxCallable() {
+            @Override
+            public int arity() {
+                return 1;
+            }
+
+            @Override
+            public Object call(Interpreter interpreter, List<Object> arguments) {
+                Object object = arguments.get(0);
+
+                if (object instanceof String) {
+                    return ((String) object).length();
+                }
+
+                if (object instanceof List) {
+                    return ((List) object).size();
+                }
+
+                return null;
+            }
+
+            @Override
+            public String toString() { return "<native fn>"; }
+        });
+
+        globals.define("argv", Lox.argv);
     }
 
     void interpret(List<Stmt> statements) {
@@ -353,8 +380,30 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
                 checkNumberOperands(expr.operator, left, right);
                 return (double)left <= (double)right;
             case MINUS:
-                checkNumberOperands(expr.operator, left, right);
-                return (double)left - (double)right;
+                if (left instanceof Double && right instanceof Double) {
+                    return (double)left - (double)right;
+                }
+
+                if (left instanceof List && right instanceof Double) {
+                    List<Object> list = (List)left;
+                    List<Object> newList = new ArrayList<>();
+                    int newSize = list.size() - ((Double) right).intValue();
+
+                    if (newSize < 0) {
+                        throw new RuntimeError(expr.operator,
+                                "Cannot remove " + ((Double) right).intValue() + " elements from an array of size " +
+                                        list.size() + ".");
+                    }
+
+                    for (int index = 0; index < newSize; ++index) {
+                        newList.add(list.get(index));
+                    }
+
+                    return newList;
+                }
+
+                throw new RuntimeError(expr.operator,
+                        "Invalid operands to binary operator '-'.");
             // PLUS is a bit different as we can add numbers and strings
             case PLUS:
                 if (left instanceof Double && right instanceof Double) {
@@ -365,8 +414,13 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
                     return (String)left + (String)right;
                 }
 
+                if (left instanceof List) {
+                    ((List)(left)).add(right);
+                    return left;
+                }
+
                 throw new RuntimeError(expr.operator,
-                        "Operands must be two numbers or two strings.");
+                        "Invalid operands to binary operator '+'.");
             case SLASH:
                 checkNumberOperands(expr.operator, left, right);
                 // Check for division by 0
@@ -438,16 +492,19 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
             throw new RuntimeError(expr.closeBracket,
                     "Only arrays can be subscripted.");
         }
+
         Object indexObject = evaluate(expr.index);
         if (!(indexObject instanceof Double)) {
             throw new RuntimeError(expr.closeBracket,
-                    "Only numbers can be used as an index.");
+                    "Only numbers can be used as an array index.");
         }
+
         int index = ((Double) indexObject).intValue();
         if (index >= list.size()) {
             throw new RuntimeError(expr.closeBracket,
-                    "Array subscript out of range.");
+                    "Array index out of range.");
         }
+
         return list.get(index);
     }
 

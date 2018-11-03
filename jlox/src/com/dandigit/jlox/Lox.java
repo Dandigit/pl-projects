@@ -6,9 +6,12 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Lox {
+    public static final List<Object> argv = new ArrayList<>();
+
     private static final Interpreter interpreter = new Interpreter();
     static boolean hadError = false;
     static boolean hadRuntimeError = false;
@@ -30,6 +33,9 @@ public class Lox {
             // We can run the provided file...
             try {
                 runFile(args[0]);
+                for (int i = 1; i < args.length; ++i) {
+                    argv.add(args[i]);
+                }
             } catch (IOException exception) {
                 System.err.println("Error: Unable to read file '" + args[0] + "'.");
                 System.exit(ErrorCode.FILE_ERROR);
@@ -101,6 +107,8 @@ public class Lox {
     static void error(Token token, String message) {
         if (token.type == TokenType.EOF) {
             report(token.line, " at end", message);
+        } else if (token.lexeme == "\n") {
+            report(token.line, " at newline", message);
         } else {
             report(token.line, " at '" + token.lexeme + "'", message);
         }
