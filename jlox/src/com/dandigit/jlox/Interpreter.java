@@ -112,6 +112,25 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
             }
         });
 
+        globals.define("num", new LoxCallable() {
+            @Override
+            public int arity() {
+                return 1;
+            }
+
+            @Override
+            public Object call(Interpreter interpreter,
+                               List<Object> arguments) {
+                return Double.parseDouble(stringify(arguments.get(0)));
+            }
+
+            @Override
+            public String toString() {
+                return "<native fn>";
+            }
+        });
+
+
         globals.define("readFile", new LoxCallable() {
             @Override
             public int arity() {
@@ -431,6 +450,9 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
             case STAR:
                 checkNumberOperands(expr.operator, left, right);
                 return (double)left * (double)right;
+            case PERCENTAGE:
+                checkNumberOperands(expr.operator, left, right);
+                return (double)left % (double)right;
         }
 
         // Unreachable

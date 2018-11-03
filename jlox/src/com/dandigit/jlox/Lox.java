@@ -25,17 +25,15 @@ public class Lox {
     }
 
     public static void main(String[] args) throws IOException {
-        if (args.length > 1) {
-            // Too many arguments
-            System.out.println("Usage: jlox [script]");
-            System.exit(ErrorCode.INVALID_ARGUMENTS);
-        } else if (args.length == 1) {
+        if (args.length >= 1) {
+            // Collect extra arguments
+            for (int i = 1; i < args.length; ++i) {
+                argv.add(args[i]);
+            }
+
             // We can run the provided file...
             try {
                 runFile(args[0]);
-                for (int i = 1; i < args.length; ++i) {
-                    argv.add(args[i]);
-                }
             } catch (IOException exception) {
                 System.err.println("Error: Unable to read file '" + args[0] + "'.");
                 System.exit(ErrorCode.FILE_ERROR);

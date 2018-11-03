@@ -421,7 +421,7 @@ class Parser {
         //Expr expr = cast();
         Expr expr = unary();
 
-        while (match(SLASH, STAR)) {
+        while (match(SLASH, STAR, PERCENTAGE)) {
             Token operator = previous();
             //Expr right = cast();
             Expr right = unary();
