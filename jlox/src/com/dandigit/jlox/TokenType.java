@@ -2,7 +2,7 @@ package com.dandigit.jlox;
 
 enum TokenType {
     // Single character tokens
-    LEFT_PAREN, RIGHT_PAREN, LEFT_BRACE, RIGHT_BRACE,
+    LEFT_PAREN, RIGHT_PAREN, LEFT_BRACE, RIGHT_BRACE, LEFT_SQUARE, RIGHT_SQUARE,
     COMMA, DOT, MINUS, PLUS, SEMICOLON, SLASH, STAR,
     COLON, QUESTION,
 

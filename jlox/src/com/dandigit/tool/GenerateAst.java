@@ -1,4 +1,4 @@
-package com.dandigit.loxtool;
+package com.dandigit.tool;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,6 +14,7 @@ public class GenerateAst {
         String outputDir = args[0];
 
         defineAst(outputDir, "Expr", Arrays.asList(
+                "Array      : List<Expr> values",
                 "Assign     : Token name, Expr value",
                 "Ternary    : Expr left, Token leftOper, Expr middle, Token rightOper, Expr right",
                 "Binary     : Expr left, Token operator, Expr right",
@@ -24,6 +25,7 @@ public class GenerateAst {
                 "Literal    : Object value",
                 "Logical    : Expr left, Token operator, Expr right",
                 "Set        : Expr object, Token name, Expr value",
+                "Subscript  : Expr object, Token closeBracket, Expr index",
                 "Super      : Token keyword, Token method",
                 "This       : Token keyword",
                 "Unary      : Token operator, Expr right",

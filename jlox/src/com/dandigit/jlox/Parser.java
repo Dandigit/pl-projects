@@ -505,6 +505,11 @@ class Parser {
                 Token name = consume(IDENTIFIER,
                         "Expected property name after '.'.");
                 expr = new Expr.Get(expr, name);
+            } else if (match(LEFT_SQUARE)) {
+                Expr index = primary();
+                Token closeBracket = consume(RIGHT_SQUARE,
+                        "Expected ']' after subscript index.");
+                expr = new Expr.Subscript(expr, closeBracket, index);
             } else {
                 break;
             }
@@ -543,6 +548,23 @@ class Parser {
 
         if (match(IDENTIFIER)) {
             return new Expr.Variable(previous());
+        }
+
+        // Array literals
+        if (match(LEFT_SQUARE)) {
+            List<Expr> values = new ArrayList<>();
+            if (match(RIGHT_SQUARE)) {
+                return new Expr.Array(null);
+            }
+            while (!match(RIGHT_SQUARE)) {
+                Expr value = assignment();
+                values.add(value);
+                if (peek().type != RIGHT_SQUARE) {
+                    consume(COMMA,
+                            "Expected comma before next expression.");
+                }
+            }
+            return new Expr.Array(values);
         }
 
         // Groupings

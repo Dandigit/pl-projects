@@ -146,6 +146,16 @@ class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
     }
 
     @Override
+    public Void visitArrayExpr(Expr.Array expr) {
+        if (expr.values != null) {
+            for (Expr value : expr.values) {
+                resolve(value);
+            }
+        }
+        return null;
+    }
+
+    @Override
     public Void visitAssignExpr(Expr.Assign expr) {
         resolve(expr.value);
         resolveLocal(expr, expr.name);
@@ -204,6 +214,13 @@ class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
     public Void visitSetExpr(Expr.Set expr) {
         resolve(expr.value);
         resolve(expr.object);
+        return null;
+    }
+
+    @Override
+    public Void visitSubscriptExpr(Expr.Subscript expr) {
+        resolve(expr.object);
+        resolve(expr.index);
         return null;
     }
 

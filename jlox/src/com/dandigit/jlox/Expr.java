@@ -4,6 +4,7 @@ import java.util.List;
 
 abstract class Expr {
     interface Visitor<R> {
+        R visitArrayExpr(Array expr);
         R visitAssignExpr(Assign expr);
         R visitTernaryExpr(Ternary expr);
         R visitBinaryExpr(Binary expr);
@@ -14,10 +15,21 @@ abstract class Expr {
         R visitLiteralExpr(Literal expr);
         R visitLogicalExpr(Logical expr);
         R visitSetExpr(Set expr);
+        R visitSubscriptExpr(Subscript expr);
         R visitSuperExpr(Super expr);
         R visitThisExpr(This expr);
         R visitUnaryExpr(Unary expr);
         R visitVariableExpr(Variable expr);
+    }
+    static class Array extends Expr {
+        Array(List<Expr> values) {
+            this.values = values;
+        }
+
+        <R> R accept(Visitor<R> visitor) {
+            return visitor.visitArrayExpr(this);
+        }
+        final List<Expr> values;
     }
     static class Assign extends Expr {
         Assign(Token name, Expr value) {
@@ -148,6 +160,20 @@ abstract class Expr {
         final Expr object;
         final Token name;
         final Expr value;
+    }
+    static class Subscript extends Expr {
+        Subscript(Expr object, Token closeBracket, Expr index) {
+            this.object = object;
+            this.closeBracket = closeBracket;
+            this.index = index;
+        }
+
+        <R> R accept(Visitor<R> visitor) {
+            return visitor.visitSubscriptExpr(this);
+        }
+        final Expr object;
+        final Token closeBracket;
+        final Expr index;
     }
     static class Super extends Expr {
         Super(Token keyword, Token method) {

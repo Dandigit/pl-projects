@@ -1,9 +1,6 @@
 package com.dandigit.jlox;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -221,6 +218,17 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
     }
 
     @Override
+    public Object visitArrayExpr(Expr.Array expr) {
+        List<Object> values = new ArrayList<>();
+        if (expr.values != null) {
+            for (Expr value : expr.values) {
+                values.add(evaluate(value));
+            }
+        }
+        return values;
+    }
+
+    @Override
     public Object visitAssignExpr(Expr.Assign expr) {
         Object value = evaluate(expr.value);
 
@@ -422,6 +430,28 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
     }
 
     @Override
+    public Object visitSubscriptExpr(Expr.Subscript expr) {
+        List<Object> list = null;
+        try {
+            list = (List<Object>) evaluate(expr.object);
+        } catch (Exception e) {
+            throw new RuntimeError(expr.closeBracket,
+                    "Only arrays can be subscripted.");
+        }
+        Object indexObject = evaluate(expr.index);
+        if (!(indexObject instanceof Double)) {
+            throw new RuntimeError(expr.closeBracket,
+                    "Only numbers can be used as an index.");
+        }
+        int index = ((Double) indexObject).intValue();
+        if (index >= list.size()) {
+            throw new RuntimeError(expr.closeBracket,
+                    "Array subscript out of range.");
+        }
+        return list.get(index);
+    }
+
+    @Override
     public Object visitTernaryExpr(Expr.Ternary expr) {
         Object left = evaluate(expr.left);
         Object middle = evaluate(expr.middle);
@@ -574,6 +604,19 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
 
     private String stringify(Object object) {
         if (object == null) return "nil";
+
+        if (object instanceof List) {
+            String text = "[";
+            List<Object> list = (List<Object>)object;
+            for (int i = 0; i < list.size(); ++i) {
+                text += stringify(list.get(i));
+                if (i != list.size() - 1) {
+                    text += ", ";
+                }
+            }
+            text += "]";
+            return text;
+        }
 
         // Work around java adding ".0" to integer-valued doubles
         if (object instanceof Double) {
