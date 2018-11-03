@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+java -cp out/production/jlox/com/dandigit/jlox com.dandigit.jlox.Lox $@

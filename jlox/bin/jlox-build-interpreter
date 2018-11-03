@@ -1,2 +1,0 @@
-javac -d ~/Source/Git/pl-projects/jlox/out/production/jlox/com/dandigit/jlox ~/Source/Git/pl-projects/jlox/src/com/dandigit/jlox/*.java
-
