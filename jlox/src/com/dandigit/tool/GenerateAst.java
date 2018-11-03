@@ -38,6 +38,7 @@ public class GenerateAst {
                 "Expression : Expr expression",
                 "Function   : Token name, Expr.Function function",
                 "If         : Expr condition, Stmt thenBranch, Stmt elseBranch",
+                "Import     : Token keyword, Expr module",
                 "Return     : Token keyword, Expr value",
                 "Var        : Token name, Expr initializer",
                 "While      : Expr condition, Stmt body"

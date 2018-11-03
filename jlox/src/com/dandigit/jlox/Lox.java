@@ -105,8 +105,6 @@ public class Lox {
     static void error(Token token, String message) {
         if (token.type == TokenType.EOF) {
             report(token.line, " at end", message);
-        } else if (token.lexeme == "\n") {
-            report(token.line, " at newline", message);
         } else {
             report(token.line, " at '" + token.lexeme + "'", message);
         }

@@ -587,6 +587,32 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
     }
 
     @Override
+    public Void visitImportStmt(Stmt.Import stmt) {
+        Object module = evaluate(stmt.module);
+        if (!(module instanceof String)) {
+            throw new RuntimeError(stmt.keyword,
+                    "Module name must be a string.");
+        }
+
+        String source = "";
+
+        try {
+            BufferedReader br = new BufferedReader(new FileReader((String)module));
+            String currentLine;
+            while ((currentLine = br.readLine()) != null) {
+                source += currentLine + "\n";
+            }
+        } catch (IOException exception) {
+            throw new RuntimeError(stmt.keyword,
+                    "Could not import module '" + module + "'.");
+        }
+
+        Lox.run(source);
+
+        return null;
+    }
+
+    @Override
     public Void visitWhileStmt(Stmt.While stmt) {
         while (isTruthy(evaluate(stmt.condition))) {
             execute(stmt.body);

@@ -16,7 +16,7 @@ enum TokenType {
     IDENTIFIER, STRING, NUMBER,
 
     // Keywords, nil and true/false
-    AND, CLASS, CONST, ELSE, FALSE, FUN, FOR, IF,
+    AND, CLASS, CONST, ELSE, FALSE, FUN, FOR, IF, IMPORT,
     NIL, OR, RETURN, SUPER, THIS, TRUE, VAR, WHILE,
 
     // Types

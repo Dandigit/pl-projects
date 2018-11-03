@@ -20,6 +20,9 @@ class Scanner {
     // of how many are open.
     private int openParen = 0;
 
+    // And we'll do the same thing for square brackets
+    private int openSquareBrackets = 0;
+
     private static final Map<String, TokenType> keywords;
 
     static {
@@ -31,6 +34,7 @@ class Scanner {
         keywords.put("for",     FOR);
         keywords.put("fun",     FUN);
         keywords.put("if",      IF);
+        keywords.put("import",  IMPORT);
         keywords.put("nil",     NIL);
         keywords.put("or",      OR);
         keywords.put("return",  RETURN);
@@ -65,8 +69,8 @@ class Scanner {
             case ')': addToken(RIGHT_PAREN); --openParen; break;
             case '{': addToken(LEFT_BRACE); break;
             case '}': addToken(RIGHT_BRACE); break;
-            case '[': addToken(LEFT_SQUARE); break;
-            case ']': addToken(RIGHT_SQUARE); break;
+            case '[': addToken(LEFT_SQUARE); ++openSquareBrackets; break;
+            case ']': addToken(RIGHT_SQUARE); --openSquareBrackets; break;
             case ',': addToken(COMMA); break;
             case '.': addToken(DOT); break;
             case '-': addToken(MINUS); break;
@@ -105,7 +109,7 @@ class Scanner {
                 ++line;
                 // Do we need an implicit semicolon here?
                 Token lastToken = tokens.get(tokens.size() - 1);
-                if (openParen == 0 &&
+                if (openParen == 0 && openSquareBrackets == 0 &&
                         lastToken.type != SEMICOLON &&
                         lastToken.type != LEFT_BRACE &&
                         lastToken.type != RIGHT_BRACE)

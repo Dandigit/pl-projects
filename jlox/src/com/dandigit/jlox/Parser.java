@@ -115,6 +115,7 @@ class Parser {
 
     /* STATEMENTS: don't need to be global or in a block. */
     private Stmt statement() {
+        if (match(IMPORT)) return importStatement();
         if (match(FOR)) return forStatement();
         if (match(IF)) return ifStatement();
         if (match(RETURN)) return returnStatement();
@@ -122,6 +123,13 @@ class Parser {
         if (match(LEFT_BRACE)) return new Stmt.Block(block());
 
         return expressionStatement();
+    }
+
+    private Stmt importStatement() {
+        Token keyword = previous();
+        Expr module = expression();
+        consume(SEMICOLON, "Expected ';' after module name.");
+        return new Stmt.Import(keyword, module);
     }
 
     private Stmt forStatement() {
