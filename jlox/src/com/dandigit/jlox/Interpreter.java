@@ -264,6 +264,39 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
     }
 
     @Override
+    public Object visitAllotExpr(Expr.Allot expr) {
+        Expr.Subscript subscript = null;
+        if (expr.object instanceof Expr.Subscript) {
+            subscript = (Expr.Subscript)expr.object;
+        }
+
+        List<Object> list = null;
+        try {
+            list = (List<Object>) evaluate(subscript.object);
+        } catch (Exception e) {
+            throw new RuntimeError(expr.name,
+                    "Only arrays can be subscripted.");
+        }
+
+        Object indexObject = evaluate(subscript.index);
+        if (!(indexObject instanceof Double)) {
+            throw new RuntimeError(expr.name,
+                    "Only numbers can be used as an array index.");
+        }
+
+        int index = ((Double) indexObject).intValue();
+        if (index >= list.size()) {
+            throw new RuntimeError(expr.name,
+                    "Array index out of range.");
+        }
+
+        Object value = evaluate(expr.value);
+
+        list.set(index, value);
+        return value;
+    }
+
+    @Override
     public Object visitArrayExpr(Expr.Array expr) {
         List<Object> values = new ArrayList<>();
         if (expr.values != null) {
@@ -511,19 +544,19 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
         try {
             list = (List<Object>) evaluate(expr.object);
         } catch (Exception e) {
-            throw new RuntimeError(expr.closeBracket,
+            throw new RuntimeError(expr.name,
                     "Only arrays can be subscripted.");
         }
 
         Object indexObject = evaluate(expr.index);
         if (!(indexObject instanceof Double)) {
-            throw new RuntimeError(expr.closeBracket,
+            throw new RuntimeError(expr.name,
                     "Only numbers can be used as an array index.");
         }
 
         int index = ((Double) indexObject).intValue();
         if (index >= list.size()) {
-            throw new RuntimeError(expr.closeBracket,
+            throw new RuntimeError(expr.name,
                     "Array index out of range.");
         }
 

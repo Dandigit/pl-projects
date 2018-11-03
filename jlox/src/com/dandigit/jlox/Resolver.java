@@ -152,6 +152,13 @@ class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
     }
 
     @Override
+    public Void visitAllotExpr(Expr.Allot expr) {
+        resolve(expr.object);
+        resolve(expr.value);
+        return null;
+    }
+
+    @Override
     public Void visitArrayExpr(Expr.Array expr) {
         if (expr.values != null) {
             for (Expr value : expr.values) {

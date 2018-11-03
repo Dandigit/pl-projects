@@ -278,6 +278,9 @@ class Parser {
             } else if (expr instanceof Expr.Get) {
                 Expr.Get get = (Expr.Get)expr;
                 return new Expr.Set(get.object, get.name, value);
+            } else if (expr instanceof Expr.Subscript) {
+                Token name = ((Expr.Subscript)expr).name;
+                return new Expr.Allot(expr, name, value);
             }
 
             // Otherwise, we must be assigning to an invalid target.
@@ -505,6 +508,7 @@ class Parser {
 
     private Expr call() {
         Expr expr = primary();
+        Token exprName = previous();
 
         while (true) {
             if (match(LEFT_PAREN)) {
@@ -517,7 +521,7 @@ class Parser {
                 Expr index = primary();
                 Token closeBracket = consume(RIGHT_SQUARE,
                         "Expected ']' after subscript index.");
-                expr = new Expr.Subscript(expr, closeBracket, index);
+                expr = new Expr.Subscript(expr, exprName, index);
             } else {
                 break;
             }
