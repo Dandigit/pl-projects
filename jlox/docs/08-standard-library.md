@@ -2,6 +2,12 @@
 Currently, Lox has quite a small standard library. This is bound to change as I implement more features, but for now, it's 
 small.
 
+## Importing standard modules
+To import a module from the standard library, use the `std:` prefix. For example:
+```
+import "std:File"
+```
+
 ## I/O
 ### Console
 - `put(value)` writes its parameter to stdout, outputting it in the console.
