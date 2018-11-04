@@ -19,7 +19,7 @@ This is a complete module that we can now import!
 You can now import this module into a Lox program (or another module) with an `import` statement. These are little lines at the 
 top of the file that tell the compiler what it should import. Say we have a file, `main.lox` in the same directory as `Math.lox`.
 ```
-import Math
+import "Math.lox"
 
 print(Math.square(3))
 ```
