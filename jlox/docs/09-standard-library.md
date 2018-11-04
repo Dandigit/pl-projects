@@ -25,6 +25,6 @@ The `File` class allows reading/writing of files.
 - `num(value)` returns `value` as a number.
 
 \
-[<- Previous chapter](./07-modules.md)
+[<- Previous chapter](./08-modules.md)
 
 [Table of contents](./00-contents.md)
