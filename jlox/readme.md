@@ -3,6 +3,9 @@
 
 ## Notable additions
 Along with the code in Crafting Interpreters, I've implemented:
+- Arrays
+- Modules and imports
+- Standard library
 - Implicit semicolons
 - Multi-line comments (they can nest!)
 - Comma operator
