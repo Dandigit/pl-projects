@@ -130,6 +130,23 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
             }
         });
 
+        globals.define("round", new LoxCallable() {
+            @Override
+            public int arity() {
+                return 1;
+            }
+
+            @Override
+            public Object call(Interpreter interpreter,
+                               List<Object> arguments) {
+                return ((Integer)((Double)arguments.get(0)).intValue()).doubleValue();
+        }
+
+            @Override
+            public String toString() {
+                return "<native fn>";
+            }
+        });
 
         globals.define("readFile", new LoxCallable() {
             @Override
@@ -230,21 +247,24 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
                 Object object = arguments.get(0);
 
                 if (object instanceof String) {
-                    return (double)((String) object).length();
+                    return (double) ((String) object).length();
                 }
 
                 if (object instanceof List) {
-                    return (double)((List) object).size();
+                    return (double) ((List) object).size();
                 }
 
                 return null;
             }
 
             @Override
-            public String toString() { return "<native fn>"; }
+            public String toString() {
+                return "<native fn>";
+            }
         });
 
         globals.define("argv", Lox.argv);
+
     }
 
     void interpret(List<Stmt> statements) {
@@ -531,6 +551,10 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
 
             return result;
         }
+        if (object instanceof NativeInstance) {
+            Object result = ((NativeInstance) object).findMethod(expr.name.lexeme);
+            return result;
+        }
 
         throw new RuntimeError(expr.name,
                 "Only instances have properties.");
@@ -625,18 +649,24 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
                     "Module name must be a string.");
         }
 
-        String moduleName = (String)module;if (moduleName.equals())
-        if (moduleName.equals("std")) {
-            Lox.run(StandardLibrary.all());
-            return null;
-        }
+        String moduleName = (String)module;
 
         if (moduleName.startsWith("std:")) {
             String library = moduleName.split(":")[1];
             if (library.equals("File")) {
                 Lox.run(StandardLibrary.File);
-                return null;
+            } else if (library.equals("Random")) {
+                Lox.run(StandardLibrary.Random);
+            } else if (library.equals("Bitwise")) {
+                globals.define("Bitwise", StandardLibrary.Bitwise);
+            } else if (library.equals("all")) {
+                StandardLibrary.importAll(globals);
+            } else {
+                throw new RuntimeError(stmt.keyword,
+                        "'" + moduleName + "' is not a standard library module.");
             }
+
+            return null;
         }
 
         String source = "";

@@ -1,0 +1,24 @@
+import "std:Bitwise"
+
+var stdRandomSeed = clock()
+
+class Random {
+    class seed(number) {
+        randomSeed = number
+    }
+
+    class random() {
+        stdRandomSeed = (1103515245 * stdRandomSeed + 12345) % 2147483648
+        return Bitwise.rightShift(stdRandomSeed, 0)
+    }
+
+    class inRange(min, max) {
+        return min + round((max - min + 1) * num(Random.random()) * num(1 / 2147483648))
+    }
+}
+
+print(Random.random())
+print(Random.random())
+
+print(Random.inRange(1, 100))
+print(Random.inRange(1, 100))
