@@ -18,6 +18,7 @@ The `File` class allows reading/writing of files.
 - `init(path)` sets the class variable `this.path` to `path`.
 - `read()` returns the contents of the file at `this.path` as a string.
 - `write(data)` writes `data` to the file at `this.path`.
+- `append(data)` appends `data` to the  file at `this.path`.
 
 ## Casting
 - `str(value)` returns `value` as a string.
