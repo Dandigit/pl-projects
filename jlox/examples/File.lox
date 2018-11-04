@@ -1,0 +1,21 @@
+class File {
+    init(path) {
+        this.path = path
+    }
+
+    read() {
+        return readFile(this.path)
+    }
+
+    write() {
+        return writeFile(this.path)
+    }
+
+    append() {
+        return appendFile(this.path)
+    }
+
+    close() {
+        this.path = ""
+    }
+}

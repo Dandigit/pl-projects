@@ -179,13 +179,10 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
                     bw.write(stringify(arguments.get(1)));
 
                     bw.close();
+                    return true;
                 } catch (IOException exception) {
-                    System.err.print("Unable to write file '");
-                    System.err.print(arguments.get(0));
-                    System.err.println("'.");
+                    return false;
                 }
-
-                return null;
             }
 
             @Override
@@ -210,13 +207,10 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
                     bw.append(stringify(arguments.get(1)));
 
                     bw.close();
+                    return true;
                 } catch (IOException exception) {
-                    System.err.print("Unable to write file '");
-                    System.err.print(arguments.get(0));
-                    System.err.println("'.");
+                    return false;
                 }
-
-                return null;
             }
 
             @Override
@@ -236,11 +230,11 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
                 Object object = arguments.get(0);
 
                 if (object instanceof String) {
-                    return ((String) object).length();
+                    return (double)((String) object).length();
                 }
 
                 if (object instanceof List) {
-                    return ((List) object).size();
+                    return (double)((List) object).size();
                 }
 
                 return null;
@@ -270,13 +264,13 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
             subscript = (Expr.Subscript)expr.object;
         }
 
-        List<Object> list = null;
-        try {
-            list = (List<Object>) evaluate(subscript.object);
-        } catch (Exception e) {
+        Object listObject = evaluate(subscript.object);
+        if (!(listObject instanceof List)) {
             throw new RuntimeError(expr.name,
                     "Only arrays can be subscripted.");
         }
+
+        List<Object> list = (List)listObject;
 
         Object indexObject = evaluate(subscript.index);
         if (!(indexObject instanceof Double)) {
@@ -437,7 +431,7 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
                 }
 
                 if (left instanceof List && right instanceof Double) {
-                    List<Object> list = (List)left;
+                    List list = (List)left;
                     List<Object> newList = new ArrayList<>();
                     int newSize = list.size() - ((Double) right).intValue();
 
@@ -467,7 +461,8 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
                 }
 
                 if (left instanceof List) {
-                    ((List)(left)).add(right);
+                    List list = (List)left;
+                    list.add(right);
                     return left;
                 }
 
@@ -501,7 +496,10 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
             arguments.add(evaluate(argument));
         }
 
-        if (!(callee instanceof LoxCallable));
+        if (!(callee instanceof LoxCallable)) {
+            throw new RuntimeError(expr.paren,
+                    "Only functions and classes are callable.");
+        }
 
         LoxCallable function = (LoxCallable)callee;
 
@@ -540,13 +538,13 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
 
     @Override
     public Object visitSubscriptExpr(Expr.Subscript expr) {
-        List<Object> list = null;
-        try {
-            list = (List<Object>) evaluate(expr.object);
-        } catch (Exception e) {
+        Object listObject = evaluate(expr.object);
+        if (!(listObject instanceof List)) {
             throw new RuntimeError(expr.name,
                     "Only arrays can be subscripted.");
         }
+
+        List list = (List)listObject;
 
         Object indexObject = evaluate(expr.index);
         if (!(indexObject instanceof Double)) {
@@ -625,6 +623,20 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
         if (!(module instanceof String)) {
             throw new RuntimeError(stmt.keyword,
                     "Module name must be a string.");
+        }
+
+        String moduleName = (String)module;if (moduleName.equals())
+        if (moduleName.equals("std")) {
+            Lox.run(StandardLibrary.all());
+            return null;
+        }
+
+        if (moduleName.startsWith("std:")) {
+            String library = moduleName.split(":")[1];
+            if (library.equals("File")) {
+                Lox.run(StandardLibrary.File);
+                return null;
+            }
         }
 
         String source = "";
