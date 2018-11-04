@@ -40,7 +40,7 @@ counter() // "1".
 counter() // "2".
 ```
 The variable, `i`, is static, as it's located within the closure. This behaviour allows functions to behave somewhat like 
-classes, manipulating a common dataset.
+classes, manipulating a common set of data.
 
 ## First-class
 As the previous example showed, functions in Lox are considered first class values, meaning you can pass them around just like 
@@ -56,6 +56,6 @@ sum(1, 2) // 3
 ```
 
 \
-[<- Previous chapter](./04-data.md) | [Next chapter ->](./06-classes.md)
+[<- Previous chapter](./05-arrays.md) | [Next chapter ->](./07-classes.md)
 
 [Table of contents](./00-contents.md)
