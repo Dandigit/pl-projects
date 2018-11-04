@@ -53,7 +53,7 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
             }
         });
 
-        globals.define("getln", new LoxCallable() {
+        globals.define("input", new LoxCallable() {
             @Override
             public int arity() {
                 return 0;

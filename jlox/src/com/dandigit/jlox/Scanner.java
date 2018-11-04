@@ -129,7 +129,7 @@ class Scanner {
                 } else if (isAlphaOrUnderscore(c)) {
                     identifier();
                 } else {
-                    Lox.error(line, "Unexpected character.");
+                    Lox.error(line, "Unexpected character '" + c + "'.");
                 }
                 break;
         }
@@ -191,6 +191,7 @@ class Scanner {
         // Keep looping until a matching " is found
         while (peek() != '"' && !isAtEnd()) {
             if (peek() == '\n') ++line;
+            if (peek() == '\\' && peekNext() == '"') advance();
             advance();
         }
 
@@ -257,29 +258,33 @@ class Scanner {
     }
 
     private String unescape(String escaped) {
-        String finalString = "";
+        StringBuilder unescaped = new StringBuilder();
 
         for (int i = 0; i < escaped.length(); ++i) {
             if (escaped.charAt(i) == '\\') {
                 ++i;
                 switch (escaped.charAt(i)) {
                     case 'n':
-                        finalString += "\n";
+                        unescaped.append("\n");
                         break;
 
                     case '\\':
-                        finalString += "\\";
+                        unescaped.append("\\");
+                        break;
+
+                    case '"':
+                        unescaped.append("\"");
                         break;
 
                     default:
                         Lox.error(line, "Unrecognised escape sequence '\\" + escaped.charAt(i) + "'.");
                 }
             } else {
-                finalString += escaped.charAt(i);
+                unescaped.append(escaped.charAt(i));
             }
         }
 
-        return finalString;
+        return unescaped.toString();
     }
 
     private void addToken(TokenType type) {
