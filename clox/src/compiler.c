@@ -241,8 +241,8 @@ bool compile(const char *source, Chunk *chunk) {
 
     advance();
     expression();
-    consume(TOKEN_EOF, "Expected end of expression.");
     endCompiler();
+    consume(TOKEN_EOF, "Expected end of expression.");
 
     // compile() returns false if there was an error.
     return !parser.hadError;
