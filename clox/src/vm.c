@@ -1,10 +1,12 @@
 #include <stdarg.h>
 #include <stdio.h>
+#include <string.h>
 
 #include "../h/common.h"
 #include "../h/compiler.h"
 #include "../h/debug.h"
 #include "../h/memory.h"
+#include "../h/object.h"
 #include "../h/vm.h"
 
 // The maximum amount of values a single instruction
@@ -16,10 +18,13 @@ VM vm;
 void initVM() {
     vm.stack = NULL;
     resetStack();
+    vm.objects = NULL;
+
 }
 
 void freeVM() {
     FREE_ARRAY(Value, vm.stack, vm.chunk->count);
+    freeObjects();
 }
 
 static void resetStack() {
@@ -46,6 +51,20 @@ static Value peek(int distance) {
 
 static bool isFalsey(Value value) {
     return IS_NIL(value) || (IS_BOOL(value) && !AS_BOOL(value));
+}
+
+static void concatenate() {
+    ObjString *b = AS_STRING(pop());
+    ObjString *a = AS_STRING(pop());
+
+    int length = a->length + b->length;
+    char *chars = ALLOCATE(char, length + 1);
+    memcpy(chars, a->chars, a->length);
+    memcpy(chars + a->length, b->chars, b->length);
+    chars[length] = '\0';
+
+    ObjString *result = takeString(chars, length);
+    push(OBJ_VAL(result));
 }
 
 static InterpretResult run() {
@@ -103,7 +122,19 @@ static InterpretResult run() {
             case OP_GREATER: BINARY_OP(BOOL_VAL, >); break;
             case OP_LESS: BINARY_OP(BOOL_VAL, <); break;
 
-            case OP_ADD: BINARY_OP(NUMBER_VAL, +); break;
+            case OP_ADD: {
+                if (IS_STRING(peek(0)) && IS_STRING(peek(1))) {
+                    concatenate();
+                } else if (IS_NUMBER(peek(0)) && IS_NUMBER(peek(1))) {
+                    double b = AS_NUMBER(pop());
+                    double a = AS_NUMBER(pop());
+                    push(NUMBER_VAL(a + b));
+                } else {
+                    runtimeError("Operands must be two numbers or two strings.");
+                    return INTERPRET_RUNTIME_ERROR;
+                }
+                break;
+            }
             case OP_SUBTRACT: BINARY_OP(NUMBER_VAL, -); break;
             case OP_MULTIPLY: BINARY_OP(NUMBER_VAL, *); break;
             case OP_DIVIDE: BINARY_OP(NUMBER_VAL, /); break;
@@ -117,6 +148,18 @@ static InterpretResult run() {
                 }
 
                 push(NUMBER_VAL(-AS_NUMBER(pop()))); break;
+            case OP_CONDITIONAL: {
+                Value elseBranch = pop();
+                Value thenBranch = pop();
+                Value condition = pop();
+
+                if (isFalsey(condition))
+                    push(elseBranch);
+                else
+                    push(thenBranch);
+
+                break;
+            }
             case OP_RETURN: {
                 printValue(pop());
                 printf("\n");
