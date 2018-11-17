@@ -36,7 +36,9 @@ The `File` class allows reading/writing of files.
 
 ## `std:Random` module
 The `Random` module allows for the generation of pseudo-random numbers through a liner congruential generator.
-- `Random.seed(seed)`
+- `Random.random()` generates a psuedo-random number.
+- `Random.inRange(min, max)` generates a psuedo-random number between `min` and `max`.
+- `Random.seed(seed)` seeds the generator. By default the seed is set to the system time, so there's usually no need to use this method
 
 \
 [<- Previous chapter](./08-modules.md)
