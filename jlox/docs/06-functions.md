@@ -9,8 +9,8 @@ fun square(n) {
 }
 ```
 
-Lambadas, or anonymous functions, are also supported within Lox, as functions are first class values. Here's the function from 
-above, but defined using a variable and lambada:
+Lambdas, or anonymous functions, are also supported within Lox, as functions are first class values. Here's the function from 
+above, but defined using a variable and lambda:
 ```
 var square = fun (n) {
     return n * n
