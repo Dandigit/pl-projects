@@ -1,5 +1,6 @@
 package com.dandigit.jlox;
 
+import java.sql.Ref;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,12 +22,6 @@ class Environment {
         }
 
         if (enclosing != null) return enclosing.get(name);
-
-        if (name.lexeme.startsWith("cast")) {
-            throw new RuntimeError(name,
-                    "No cast function defined for type '" +
-                            name.lexeme.substring(4) + "'.");
-        }
 
         throw new RuntimeError(name,
                 "Undefined variable '" + name.lexeme + "'.");

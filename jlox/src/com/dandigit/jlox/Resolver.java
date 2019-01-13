@@ -224,6 +224,12 @@ class Resolver implements Expr.Visitor<Void>, Stmt.Visitor<Void> {
     }
 
     @Override
+    public Void visitReferenceExpr(Expr.Reference expr) {
+        resolve(expr.value);
+        return null;
+    }
+
+    @Override
     public Void visitSetExpr(Expr.Set expr) {
         resolve(expr.value);
         resolve(expr.object);

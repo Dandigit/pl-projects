@@ -271,6 +271,10 @@ class Parser {
             Token equals = previous();
             Expr value = assignment(); // Right recursion
 
+            if (expr instanceof Expr.Reference) {
+                expr = ((Expr.Reference)expr).value;
+            }
+
             // Is the first expression a variable?
             if (expr instanceof Expr.Variable) {
                 Token name = ((Expr.Variable)expr).name;
@@ -279,7 +283,7 @@ class Parser {
                 Expr.Get get = (Expr.Get)expr;
                 return new Expr.Set(get.object, get.name, value);
             } else if (expr instanceof Expr.Subscript) {
-                Token name = ((Expr.Subscript)expr).name;
+                Token name = ((Expr.Subscript) expr).name;
                 return new Expr.Allot(expr, name, value);
             }
 
@@ -442,31 +446,6 @@ class Parser {
         return expr;
     }
 
-    /*
-    private Expr cast() {
-        Expr expr = unary();
-
-        while (match(AS)) {
-            Token operator = previous();
-            Token right = advance();
-            expr = new Expr.Call(
-                    new Expr.Variable(
-                          new Token(
-                                  IDENTIFIER,
-                                  "cast" + right.lexeme,
-                                  null,
-                                  operator.line
-                          )
-                    ),
-                    operator,
-                    Arrays.asList(expr)
-            );
-        }
-
-        return expr;
-    }
-    */
-
     /* The unary operators are a bit different, as  *
      * we're using right recursion to get the right *
      * operand. This is because the next precedence *
@@ -482,6 +461,19 @@ class Parser {
             return new Expr.Unary(operator, right);
         }
 
+        if (match(REF)) {
+            Token operator = previous();
+            Expr right = unary();
+            if (right instanceof Expr.Variable) {
+                return new Expr.Reference(operator, right);
+            } else if (right instanceof Expr.Get) {
+                return new Expr.Reference(operator, right);
+            } else if (right instanceof Expr.Subscript) {
+                return new Expr.Reference(operator, right);
+            }
+            throw error(operator, "Cannot reference a non-referencable expression.");
+        }
+
         // Otherwise, we must have reached the highest level of precedence.
         return call();
     }
@@ -491,7 +483,7 @@ class Parser {
         if (!check(RIGHT_PAREN)) {
             do {
                 if (arguments.size() >= 8) {
-                    error(peek(), "Cannot have more than 8 arguments.");
+                    throw error(peek(), "Cannot have more than 8 arguments.");
                 }
 
                 // Calls assignment() rather than expression()

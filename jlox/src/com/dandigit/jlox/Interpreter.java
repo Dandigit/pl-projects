@@ -1,5 +1,6 @@
 package com.dandigit.jlox;
 
+import java.sql.Ref;
 import java.util.*;
 
 import java.io.BufferedReader;
@@ -324,15 +325,37 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
     @Override
     public Object visitAssignExpr(Expr.Assign expr) {
         Object value = evaluate(expr.value);
-
         Integer distance = locals.get(expr);
-        if (distance != null) {
-            environment.assignAt(distance, expr.name, value);
+
+        Object target = (distance != null ? environment.getAt(distance, expr.name.lexeme) : globals.get(expr.name));
+
+        if (target instanceof Reference) {
+            assignReference((Reference)target, expr.value, distance);
         } else {
-            globals.assign(expr.name, value);
+            assign(expr.name, value, distance);
         }
 
         return value;
+    }
+
+    private void assignReference(Reference target, Expr value, Integer distance) {
+        if (target instanceof Reference.Variable) {
+            assign(target.name(), evaluate(value), distance);
+        } else if (target instanceof Reference.Property) {
+            Expr.Get expr = (Expr.Get)target.drf();
+            evaluate(new Expr.Set(expr.object, expr.name, value));
+        } else if (target instanceof Reference.Element) {
+            Expr.Subscript expr = (Expr.Subscript)target.drf();
+            evaluate(new Expr.Allot(expr.object, expr.name, expr.index));
+        }
+    }
+
+    private void assign(Token name, Object value, Integer distance) {
+        if (distance != null) {
+            environment.assignAt(distance, name, value);
+        } else {
+            globals.assign(name, value);
+        }
     }
 
     @Override
@@ -351,6 +374,21 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
         }
 
         return evaluate(expr.right);
+    }
+
+    @Override
+    public Object visitReferenceExpr(Expr.Reference expr) {
+        if (expr.value instanceof Expr.Variable) {
+            return new Reference.Variable((Expr.Variable) expr.value);
+        }
+        if (expr.value instanceof Expr.Get) {
+            return new Reference.Property((Expr.Get) expr.value);
+        }
+        if (expr.value instanceof Expr.Subscript) {
+            return new Reference.Element((Expr.Subscript) expr.value);
+        }
+
+        throw new RuntimeError(expr.operator, "Internal: Could not reference expression at runtime.");
     }
 
     @Override
@@ -699,7 +737,7 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
     public Void visitVarStmt(Stmt.Var stmt) {
         Object value = null;
         if (stmt.initializer != null) {
-            value = evaluate(stmt.initializer);
+            value = evaluateWithoutDeref(stmt.initializer);
         }
 
         environment.define(stmt.name.lexeme, value);
@@ -812,7 +850,18 @@ class Interpreter implements Expr.Visitor<Object>, Stmt.Visitor<Void> {
     }
 
     private Object evaluate(Expr expr) {
+        return maybeDeref(expr.accept(this));
+    }
+
+    private Object evaluateWithoutDeref(Expr expr) {
         return expr.accept(this);
+    }
+
+    private Object maybeDeref(Object object) {
+        if (object instanceof Reference) {
+            return evaluate(((Reference)object).drf());
+        }
+        return object;
     }
 
     private void execute(Stmt stmt) {

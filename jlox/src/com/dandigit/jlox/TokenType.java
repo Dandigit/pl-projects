@@ -17,7 +17,7 @@ enum TokenType {
 
     // Keywords, nil and true/false
     AND, CLASS, CONST, ELSE, FALSE, FUN, FOR, IF, IMPORT,
-    NIL, OR, RETURN, SUPER, THIS, TRUE, VAR, WHILE,
+    NIL, OR, REF, RETURN, SUPER, THIS, TRUE, VAR, WHILE,
 
     // Types
     NUM, BOOL, STR,

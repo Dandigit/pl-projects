@@ -2,16 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7c89c4ff-53cd-48bd-b506-174064dbda37" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../clox/h/object.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../clox/src/object.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../clox/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../clox/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../clox/h/compiler.h" beforeDir="false" afterPath="$PROJECT_DIR$/../clox/h/compiler.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../clox/h/memory.h" beforeDir="false" afterPath="$PROJECT_DIR$/../clox/h/memory.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../clox/h/value.h" beforeDir="false" afterPath="$PROJECT_DIR$/../clox/h/value.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../clox/h/vm.h" beforeDir="false" afterPath="$PROJECT_DIR$/../clox/h/vm.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../clox/src/compiler.c" beforeDir="false" afterPath="$PROJECT_DIR$/../clox/src/compiler.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../clox/src/value.c" beforeDir="false" afterPath="$PROJECT_DIR$/../clox/src/value.c" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../clox/src/vm.c" beforeDir="false" afterPath="$PROJECT_DIR$/../clox/src/vm.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/dandigit/jlox/Reference.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../clox/.idea/codeStyles/Project.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/dandigit/jlox/Environment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dandigit/jlox/Environment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/dandigit/jlox/Expr.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dandigit/jlox/Expr.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/dandigit/jlox/Interpreter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dandigit/jlox/Interpreter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/dandigit/jlox/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dandigit/jlox/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/dandigit/jlox/Resolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dandigit/jlox/Resolver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/dandigit/jlox/Scanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dandigit/jlox/Scanner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/dandigit/jlox/TokenType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dandigit/jlox/TokenType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/dandigit/tool/GenerateAst.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/dandigit/tool/GenerateAst.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,96 +25,95 @@
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/jlox$Java_11.ic" NAME="Java 11 Coverage Results" MODIFIED="1541220315812" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
-  <component name="FUSProjectUsageTrigger">
-    <session id="-377677997">
-      <usages-collector id="statistics.lifecycle.project">
-        <counts>
-          <entry key="project.closed" value="21" />
-          <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.10" value="1" />
-          <entry key="project.open.time.11" value="4" />
-          <entry key="project.open.time.12" value="6" />
-          <entry key="project.open.time.14" value="1" />
-          <entry key="project.open.time.15" value="4" />
-          <entry key="project.open.time.21" value="1" />
-          <entry key="project.open.time.4" value="1" />
-          <entry key="project.open.time.9" value="2" />
-          <entry key="project.opened" value="21" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.open">
-        <counts>
-          <entry key="iml" value="1" />
-          <entry key="java" value="68" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.open">
-        <counts>
-          <entry key="IDEA_MODULE" value="1" />
-          <entry key="JAVA" value="68" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.extensions.edit">
-        <counts>
-          <entry key="java" value="59191" />
-        </counts>
-      </usages-collector>
-      <usages-collector id="statistics.file.types.edit">
-        <counts>
-          <entry key="JAVA" value="59191" />
-        </counts>
-      </usages-collector>
-    </session>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Interpreter.java">
+        <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="690">
-              <caret line="63" column="56" selection-start-line="63" selection-start-column="56" selection-end-line="63" selection-end-column="56" />
+            <state relative-caret-position="90">
+              <caret line="465" column="11" lean-forward="true" selection-start-line="465" selection-start-column="11" selection-end-line="465" selection-end-column="11" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#20045#20046#0" expanded="true" />
+                <element signature="e#20115#20116#0" expanded="true" />
+                <element signature="e#20193#20194#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Parser.java">
+        <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Resolver.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6390">
-              <caret line="434" column="24" selection-start-line="434" selection-start-column="24" selection-end-line="434" selection-end-column="24" />
+            <state relative-caret-position="285">
+              <caret line="227" column="26" selection-start-line="227" selection-start-column="26" selection-end-line="227" selection-end-column="26" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Scanner.java">
+        <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Interpreter.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="422">
-              <caret line="131" column="69" selection-start-line="131" selection-start-column="69" selection-end-line="131" selection-end-column="69" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/NativeInstance.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="17" column="9" selection-start-line="17" selection-start-column="9" selection-end-line="17" selection-end-column="9" />
+            <state relative-caret-position="40">
+              <caret line="278" column="5" lean-forward="true" selection-start-line="278" selection-start-column="5" selection-end-line="278" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="e#10534#10535#0" expanded="true" />
+                <element signature="e#10567#10568#0" expanded="true" />
+                <element signature="e#12553#12554#0" expanded="true" />
+                <element signature="e#12610#12611#0" expanded="true" />
+                <element signature="e#13080#13081#0" expanded="true" />
+                <element signature="e#13134#13135#0" expanded="true" />
+                <element signature="e#17663#17664#0" expanded="true" />
+                <element signature="e#17733#17734#0" expanded="true" />
+                <element signature="e#19828#19829#0" expanded="true" />
+                <element signature="e#19876#19877#0" expanded="true" />
+                <element signature="e#26248#26249#0" expanded="true" />
+                <element signature="e#26300#26301#0" expanded="true" />
+                <element signature="e#26354#26355#0" expanded="true" />
+                <element signature="e#26394#26395#0" expanded="true" />
+                <element signature="e#26619#26620#0" expanded="true" />
+                <element signature="e#26652#26653#0" expanded="true" />
+                <element signature="e#26701#26702#0" expanded="true" />
+                <element signature="e#26740#26741#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Lox.java">
+        <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Reference.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1005">
-              <caret line="74" column="30" selection-start-line="74" selection-start-column="30" selection-end-line="74" selection-end-column="30" />
+            <state relative-caret-position="630">
+              <caret line="42" column="11" selection-start-line="42" selection-start-column="11" selection-end-line="42" selection-end-column="11" />
+              <folding>
+                <element signature="e#268#269#0" expanded="true" />
+                <element signature="e#355#356#0" expanded="true" />
+                <element signature="e#435#436#0" expanded="true" />
+                <element signature="e#594#595#0" expanded="true" />
+                <element signature="e#681#682#0" expanded="true" />
+                <element signature="e#761#762#0" expanded="true" />
+                <element signature="e#930#931#0" expanded="true" />
+                <element signature="e#1017#1018#0" expanded="true" />
+                <element signature="e#1097#1098#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/LoxCallable.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/dandigit/tool/GenerateAst.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="360">
+              <caret line="27" column="52" lean-forward="true" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -120,7 +121,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/StandardLibrary.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="870">
+            <state relative-caret-position="885">
               <caret line="63" column="30" selection-start-line="63" selection-start-column="30" selection-end-line="63" selection-end-column="30" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -132,8 +133,40 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Expr.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
+            <state relative-caret-position="-1515">
               <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+              <folding>
+                <element signature="e#1068#1069#0" expanded="true" />
+                <element signature="e#1127#1128#0" expanded="true" />
+                <element signature="e#1285#1286#0" expanded="true" />
+                <element signature="e#1329#1330#0" expanded="true" />
+                <element signature="e#1373#1374#0" expanded="true" />
+                <element signature="e#1432#1433#0" expanded="true" />
+                <element signature="e#1667#1668#0" expanded="true" />
+                <element signature="e#1727#1728#0" expanded="true" />
+                <element signature="e#2140#2141#0" expanded="true" />
+                <element signature="e#2201#2202#0" expanded="true" />
+                <element signature="e#2595#2596#0" expanded="true" />
+                <element signature="e#2655#2656#0" expanded="true" />
+                <element signature="e#3002#3003#0" expanded="true" />
+                <element signature="e#3060#3061#0" expanded="true" />
+                <element signature="e#3371#3372#0" expanded="true" />
+                <element signature="e#3433#3434#0" expanded="true" />
+                <element signature="e#3697#3698#0" expanded="true" />
+                <element signature="e#3754#3755#0" expanded="true" />
+                <element signature="e#3890#3891#0" expanded="true" />
+                <element signature="e#3942#3943#0" expanded="true" />
+                <element signature="e#3986#3987#0" expanded="true" />
+                <element signature="e#4048#4049#0" expanded="true" />
+                <element signature="e#4157#4158#0" expanded="true" />
+                <element signature="e#4199#4200#0" expanded="true" />
+                <element signature="e#4243#4244#0" expanded="true" />
+                <element signature="e#4304#4305#0" expanded="true" />
+                <element signature="e#4589#4590#0" expanded="true" />
+                <element signature="e#4650#4651#0" expanded="true" />
+                <element signature="e#4951#4952#0" expanded="true" />
+                <element signature="e#5014#5015#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -141,19 +174,12 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Environment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/LoxClass.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+            <state relative-caret-position="256">
+              <caret line="50" column="5" lean-forward="true" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#1111#1112#0" expanded="true" />
+                <element signature="e#1216#1217#0" expanded="true" />
+                <element signature="e#1563#1564#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -185,6 +211,7 @@
       <find>resolv</find>
       <find>undefined</find>
       <find>o</find>
+      <find>Object evaluate</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -212,23 +239,19 @@
         <option value="$PROJECT_DIR$/src/com/dandigit/jlox/LoxInstance.java" />
         <option value="$PROJECT_DIR$/src/com/dandigit/jlox/LoxFunction.java" />
         <option value="$PROJECT_DIR$/src/com/dandigit/jlox/LoxClass.java" />
-        <option value="$PROJECT_DIR$/src/com/dandigit/jlox/TokenType.java" />
         <option value="$PROJECT_DIR$/src/com/dandigit/jlox/Lox.java" />
-        <option value="$PROJECT_DIR$/src/com/dandigit/tool/GenerateAst.java" />
-        <option value="$PROJECT_DIR$/src/com/dandigit/jlox/Parser.java" />
-        <option value="$PROJECT_DIR$/src/com/dandigit/jlox/Resolver.java" />
         <option value="$PROJECT_DIR$/src/com/dandigit/jlox/NativeClass.java" />
         <option value="$PROJECT_DIR$/src/com/dandigit/jlox/StandardLibrary.java" />
-        <option value="$PROJECT_DIR$/src/com/dandigit/jlox/Interpreter.java" />
+        <option value="$PROJECT_DIR$/src/com/dandigit/jlox/TokenType.java" />
         <option value="$PROJECT_DIR$/src/com/dandigit/jlox/Scanner.java" />
+        <option value="$PROJECT_DIR$/src/com/dandigit/jlox/Resolver.java" />
+        <option value="$PROJECT_DIR$/src/com/dandigit/jlox/Reference.java" />
+        <option value="$PROJECT_DIR$/src/com/dandigit/tool/GenerateAst.java" />
+        <option value="$PROJECT_DIR$/src/com/dandigit/jlox/Environment.java" />
+        <option value="$PROJECT_DIR$/src/com/dandigit/jlox/Parser.java" />
+        <option value="$PROJECT_DIR$/src/com/dandigit/jlox/Interpreter.java" />
       </list>
     </option>
-  </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
-  <component name="JsGulpfileManager">
-    <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
@@ -248,29 +271,12 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="jlox" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jlox" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jlox" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jlox" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jlox" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jlox" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="jlox" type="b2602c69:ProjectViewProjectNode" />
-              <item name="jlox" type="462c0819:PsiDirectoryNode" />
-              <item name="out" type="462c0819:PsiDirectoryNode" />
-              <item name="production" type="462c0819:PsiDirectoryNode" />
               <item name="jlox" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -303,17 +309,17 @@
         </subPane>
       </pane>
       <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///home/dan/Source/Git/pl-projects/jlox/src/com/dandigit/jlox/Parser.java" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1541329555713" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547353361190" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Project" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
@@ -331,6 +337,8 @@
   </component>
   <component name="RunManager">
     <configuration name="Java 11" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="/usr/lib/jvm/java-1.11.0-openjdk-amd64" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <option name="MAIN_CLASS_NAME" value="com.dandigit.jlox.Lox" />
       <module name="jlox" />
       <method v="2">
@@ -361,11 +369,16 @@
       <workItem from="1540594015785" duration="828000" />
       <workItem from="1541215905851" duration="30804000" />
       <workItem from="1541516124730" duration="143000" />
+      <workItem from="1547281033381" duration="248000" />
+      <workItem from="1547281306942" duration="54000" />
+      <workItem from="1547281651541" duration="2648000" />
+      <workItem from="1547337550782" duration="417000" />
+      <workItem from="1547339144997" duration="11459000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52039000" />
+    <option name="totallyTimeSpent" value="66865000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -378,8 +391,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.07692308" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14001107" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -388,16 +402,17 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3264865" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4991699" visible="true" weight="0.3261339" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.40172786" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32864866" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.50056756" side_tool="true" weight="0.32864866" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5008301" side_tool="true" weight="0.3261339" />
       <window_info anchor="bottom" id="Version Control" order="9" />
-      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49943247" weight="0.32756758" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49943247" weight="0.32721382" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24971624" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -407,13 +422,43 @@
       <window_info anchor="right" id="Palette&#9;" order="6" />
       <window_info anchor="right" id="Maven Projects" order="7" weight="0.3291714" />
       <window_info anchor="right" id="Database" order="8" />
+      <window_info anchor="right" id="Maven" order="9" />
     </layout>
+    <layout-to-restore>
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14001107" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4991699" visible="true" weight="0.3261339" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.32936078" />
+      <window_info anchor="bottom" id="Terminal" order="7" weight="0.32864866" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5008301" side_tool="true" weight="0.3261339" />
+      <window_info anchor="bottom" id="Version Control" order="9" />
+      <window_info anchor="bottom" id="Messages" order="10" sideWeight="0.49943247" weight="0.32756758" />
+      <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Docker" order="12" show_stripe_button="false" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.24971624" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Palette&#9;" order="6" />
+      <window_info anchor="right" id="Maven Projects" order="7" weight="0.3291714" />
+      <window_info anchor="right" id="Database" order="8" />
+      <window_info anchor="right" id="Maven" order="9" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
-  </component>
-  <component name="VcsContentAnnotationSettings">
-    <option name="myLimit" value="2678400000" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
@@ -447,13 +492,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/TokenType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="57" selection-start-line="18" selection-start-column="57" selection-end-line="18" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Stmt.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
@@ -461,32 +499,6 @@
           <folding>
             <element signature="e#2583#2584#0" expanded="true" />
             <element signature="e#2643#2644#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/dandigit/tool/GenerateAst.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="28" column="53" selection-start-line="28" selection-start-column="53" selection-end-line="28" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Resolver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2280">
-          <caret line="157" column="20" selection-start-line="157" selection-start-column="20" selection-end-line="157" selection-end-column="20" />
-          <folding>
-            <element signature="e#4872#4873#0" expanded="true" />
-            <element signature="e#4899#4900#0" expanded="true" />
-            <element signature="e#6823#6824#0" expanded="true" />
-            <element signature="e#6856#6857#0" expanded="true" />
-            <element signature="e#6895#6896#0" expanded="true" />
-            <element signature="e#6928#6929#0" expanded="true" />
-            <element signature="e#7433#7434#0" expanded="true" />
-            <element signature="e#7492#7493#0" expanded="true" />
-            <element signature="e#7523#7524#0" expanded="true" />
-            <element signature="e#7551#7552#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -505,30 +517,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/LoxCallable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Interpreter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="690">
-          <caret line="63" column="56" selection-start-line="63" selection-start-column="56" selection-end-line="63" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Parser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6390">
-          <caret line="434" column="24" selection-start-line="434" selection-start-column="24" selection-end-line="434" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/NativeInstance.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="240">
@@ -539,34 +527,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Scanner.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="39" column="27" selection-start-line="39" selection-start-column="27" selection-end-line="39" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/TokenType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Lox.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1005">
           <caret line="74" column="30" selection-start-line="74" selection-start-column="30" selection-end-line="74" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/StandardLibrary.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="870">
-          <caret line="63" column="30" selection-start-line="63" selection-start-column="30" selection-end-line="63" selection-end-column="30" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Expr.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Environment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="21" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>
@@ -590,10 +568,143 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Scanner.java">
+    <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Environment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="131" column="69" selection-start-line="131" selection-start-column="69" selection-end-line="131" selection-end-column="69" />
+        <state relative-caret-position="256">
+          <caret line="50" column="5" lean-forward="true" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
+          <folding>
+            <element signature="e#1111#1112#0" expanded="true" />
+            <element signature="e#1216#1217#0" expanded="true" />
+            <element signature="e#1563#1564#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Parser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="465" column="11" lean-forward="true" selection-start-line="465" selection-start-column="11" selection-end-line="465" selection-end-column="11" />
+          <folding>
+            <element signature="e#20045#20046#0" expanded="true" />
+            <element signature="e#20115#20116#0" expanded="true" />
+            <element signature="e#20193#20194#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Resolver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="227" column="26" selection-start-line="227" selection-start-column="26" selection-end-line="227" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/StandardLibrary.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="885">
+          <caret line="63" column="30" selection-start-line="63" selection-start-column="30" selection-end-line="63" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Expr.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1515">
+          <caret line="4" column="15" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+          <folding>
+            <element signature="e#1068#1069#0" expanded="true" />
+            <element signature="e#1127#1128#0" expanded="true" />
+            <element signature="e#1285#1286#0" expanded="true" />
+            <element signature="e#1329#1330#0" expanded="true" />
+            <element signature="e#1373#1374#0" expanded="true" />
+            <element signature="e#1432#1433#0" expanded="true" />
+            <element signature="e#1667#1668#0" expanded="true" />
+            <element signature="e#1727#1728#0" expanded="true" />
+            <element signature="e#2140#2141#0" expanded="true" />
+            <element signature="e#2201#2202#0" expanded="true" />
+            <element signature="e#2595#2596#0" expanded="true" />
+            <element signature="e#2655#2656#0" expanded="true" />
+            <element signature="e#3002#3003#0" expanded="true" />
+            <element signature="e#3060#3061#0" expanded="true" />
+            <element signature="e#3371#3372#0" expanded="true" />
+            <element signature="e#3433#3434#0" expanded="true" />
+            <element signature="e#3697#3698#0" expanded="true" />
+            <element signature="e#3754#3755#0" expanded="true" />
+            <element signature="e#3890#3891#0" expanded="true" />
+            <element signature="e#3942#3943#0" expanded="true" />
+            <element signature="e#3986#3987#0" expanded="true" />
+            <element signature="e#4048#4049#0" expanded="true" />
+            <element signature="e#4157#4158#0" expanded="true" />
+            <element signature="e#4199#4200#0" expanded="true" />
+            <element signature="e#4243#4244#0" expanded="true" />
+            <element signature="e#4304#4305#0" expanded="true" />
+            <element signature="e#4589#4590#0" expanded="true" />
+            <element signature="e#4650#4651#0" expanded="true" />
+            <element signature="e#4951#4952#0" expanded="true" />
+            <element signature="e#5014#5015#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/dandigit/tool/GenerateAst.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="27" column="52" lean-forward="true" selection-start-line="27" selection-start-column="52" selection-end-line="27" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/LoxCallable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="10" selection-start-line="4" selection-start-column="10" selection-end-line="4" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Reference.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="630">
+          <caret line="42" column="11" selection-start-line="42" selection-start-column="11" selection-end-line="42" selection-end-column="11" />
+          <folding>
+            <element signature="e#268#269#0" expanded="true" />
+            <element signature="e#355#356#0" expanded="true" />
+            <element signature="e#435#436#0" expanded="true" />
+            <element signature="e#594#595#0" expanded="true" />
+            <element signature="e#681#682#0" expanded="true" />
+            <element signature="e#761#762#0" expanded="true" />
+            <element signature="e#930#931#0" expanded="true" />
+            <element signature="e#1017#1018#0" expanded="true" />
+            <element signature="e#1097#1098#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/dandigit/jlox/Interpreter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="40">
+          <caret line="278" column="5" lean-forward="true" selection-start-line="278" selection-start-column="5" selection-end-line="278" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#10534#10535#0" expanded="true" />
+            <element signature="e#10567#10568#0" expanded="true" />
+            <element signature="e#12553#12554#0" expanded="true" />
+            <element signature="e#12610#12611#0" expanded="true" />
+            <element signature="e#13080#13081#0" expanded="true" />
+            <element signature="e#13134#13135#0" expanded="true" />
+            <element signature="e#17663#17664#0" expanded="true" />
+            <element signature="e#17733#17734#0" expanded="true" />
+            <element signature="e#19828#19829#0" expanded="true" />
+            <element signature="e#19876#19877#0" expanded="true" />
+            <element signature="e#26248#26249#0" expanded="true" />
+            <element signature="e#26300#26301#0" expanded="true" />
+            <element signature="e#26354#26355#0" expanded="true" />
+            <element signature="e#26394#26395#0" expanded="true" />
+            <element signature="e#26619#26620#0" expanded="true" />
+            <element signature="e#26652#26653#0" expanded="true" />
+            <element signature="e#26701#26702#0" expanded="true" />
+            <element signature="e#26740#26741#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

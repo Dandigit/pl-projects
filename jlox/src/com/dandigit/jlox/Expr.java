@@ -15,6 +15,7 @@ abstract class Expr {
         R visitGroupingExpr(Grouping expr);
         R visitLiteralExpr(Literal expr);
         R visitLogicalExpr(Logical expr);
+        R visitReferenceExpr(Reference expr);
         R visitSetExpr(Set expr);
         R visitSubscriptExpr(Subscript expr);
         R visitSuperExpr(Super expr);
@@ -161,6 +162,18 @@ abstract class Expr {
         final Expr left;
         final Token operator;
         final Expr right;
+    }
+    static class Reference extends Expr {
+        Reference(Token operator, Expr value) {
+            this.operator = operator;
+            this.value = value;
+        }
+
+        <R> R accept(Visitor<R> visitor) {
+            return visitor.visitReferenceExpr(this);
+        }
+        final Token operator;
+        final Expr value;
     }
     static class Set extends Expr {
         Set(Expr object, Token name, Expr value) {

@@ -37,6 +37,7 @@ class Scanner {
         keywords.put("import",  IMPORT);
         keywords.put("nil",     NIL);
         keywords.put("or",      OR);
+        keywords.put("ref",     REF);
         keywords.put("return",  RETURN);
         keywords.put("super",   SUPER);
         keywords.put("this",    THIS);
