@@ -4,6 +4,7 @@
 ## Notable additions
 Along with the code in Crafting Interpreters, I've implemented:
 - Arrays
+- References
 - Modules and imports
 - Standard library
 - Implicit semicolons
