@@ -5,7 +5,9 @@
 #include "../h/common.h"
 #include "../h/chunk.h"
 #include "../h/debug.h"
+#include "../h/table.h"
 #include "../h/vm.h"
+#include "../h/object.h"
 
 static void repl() {
     char line[1024];

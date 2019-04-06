@@ -2,6 +2,7 @@
 #define CLOX_VM_H
 
 #include "chunk.h"
+#include "table.h"
 #include "value.h"
 
 typedef struct {
@@ -9,6 +10,9 @@ typedef struct {
     uint8_t *ip;
     Value *stack;
     Value *stackTop;
+
+    Table globals;
+    Table strings;
 
     Obj* objects;
 } VM;
